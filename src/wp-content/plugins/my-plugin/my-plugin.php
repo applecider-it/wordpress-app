@@ -11,9 +11,10 @@ if (!defined('ABSPATH')) {
 }
 
 require_once __DIR__ . '/src/Install.php';
-require_once __DIR__ . '/src/Form.php';
-require_once __DIR__ . '/src/Submit.php';
-require_once __DIR__ . '/src/Admin.php';
+require_once __DIR__ . '/src/View.php';
+
+require_once __DIR__ . '/src/Controllers/ContactController.php';
+require_once __DIR__ . '/src/Controllers/AdminContactController.php';
 
 // プラグイン追加時に動作する処理
 register_activation_hook(__FILE__, function () {
@@ -31,18 +32,18 @@ add_action('init', function () {
             // 不正リクエストチェック
             check_admin_referer('myplugin_contact_form');
 
-            $submit = new MyPlugin\Submit;
+            $contact = new MyPlugin\Controllers\ContactController;
 
-            $submit->store_contact();
+            $contact->store();
         }
     }
 });
 
 // プラグインを呼び出すためのコードの設定
 add_shortcode('contact_form', function () {
-    $form = new MyPlugin\Form;
+    $contact = new MyPlugin\Controllers\ContactController;
 
-    return $form->render();
+    return $contact->create();
 });
 
 // 管理画面設定
@@ -55,9 +56,12 @@ add_action(
             'manage_options',
             'contact-plugin',
             function () {
-                $admin = new MyPlugin\Admin;
-
-                $admin->output();
+                $adminContact = new MyPlugin\Controllers\AdminContactController;
+                if (isset($_GET['id'])) {
+                    $adminContact->show((int) $_GET['id']);
+                    return;
+                }
+                $adminContact->index();
             },
             'dashicons-email'
         );

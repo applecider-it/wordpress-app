@@ -1,11 +1,23 @@
 <?php
 
-namespace MyPlugin;
+namespace MyPlugin\Controllers;
 
-class Submit
+use MyPlugin\View;
+
+/**
+ * お問い合わせ管理
+ */
+class ContactController
 {
+    /** お問い合わせフォーム */
+    function create()
+    {
+        $view = new View;
+        return $view->render('contact-form');
+    }
+
     /** お問い合わせ登録 */
-    function store_contact()
+    function store()
     {
         global $wpdb;
 
