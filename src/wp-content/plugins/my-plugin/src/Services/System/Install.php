@@ -2,6 +2,8 @@
 
 namespace MyPlugin\Services\System;
 
+use MyPlugin\Models\ContactMessage;
+
 class Install
 {
     /** インストール実行 */
@@ -9,7 +11,7 @@ class Install
     {
         global $wpdb;
 
-        $table = $wpdb->prefix . 'myplugin_contact_messages';
+        $table = ContactMessage::tableName();
 
         // 文字コード取得
         $charset = $wpdb->get_charset_collate();

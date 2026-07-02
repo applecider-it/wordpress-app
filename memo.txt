@@ -73,11 +73,12 @@ My Plugin有効化
 
 メニューに追加
 
+Tailwind Build
+
 -----------------------------------
 
 独自テーブル
 
 問い合わせ
 
-wp_contact_messages
-
+wp_myplugin_contact_messages

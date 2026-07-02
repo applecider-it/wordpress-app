@@ -1,6 +1,6 @@
 <?php
 
-namespace MyThema;
+namespace MyTheme;
 
 /** スライドショー出力 */
 function slideShow(array $list) {
