@@ -4,28 +4,32 @@
 
     <input type="hidden" name="myplugin_action" value="store_contact">
 
-    <p>
-        名前<br>
-        <input type="text" name="name" class="app-form-input" required>
-    </p>
+    <div class="space-y-3">
+        <div>
+            <div>名前</div>
+            <div><input type="text" name="name" class="app-form-input" required></div>
+        </div>
 
-    <p>
-        メール<br>
-        <input type="email" name="email" class="app-form-input" required>
-    </p>
+        <div>
+            <div>メール</div>
+            <div><input type="email" name="email" class="app-form-input" required></div>
+        </div>
 
-    <p>
-        件名<br>
-        <input type="text" name="subject" class="app-form-input" required>
-    </p>
+        <div>
+            <div>件名</div>
+            <div><input type="text" name="subject" class="app-form-input" required></div>
+        </div>
 
-    <p>
-        内容<br>
-        <textarea name="message" rows="6" class="app-form-input" required></textarea>
-    </p>
+        <div>
+            <div>内容</div>
+            <div><textarea name="message" rows="6" class="app-form-input" required></textarea></div>
+        </div>
+    </div>
 
-    <button type="submit" class="app-btn-primary">
-        送信
-    </button>
+    <div class="mt-5">
+        <button type="submit" class="app-btn-primary">
+            送信
+        </button>
+    </div>
 
 </form>
