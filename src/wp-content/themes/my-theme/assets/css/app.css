@@ -1,3 +1,7 @@
+/*
+独自プラグインのCSS管理もここでしている
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -31,6 +31,8 @@ Tailwind Build
 
 npx tailwindcss -i ./assets/css/app.css -o ./dist/css/app.css --watch
 
+独自プラグインのCSS管理もここでしている
+
 -----------------------------------
 
 ベーステーマの場所
