@@ -45,7 +45,7 @@ ls -la ~/workspace/github/wordpress-app/src/wp-includes/theme-compat
 
 Wordpressダウンロード
 
-コードを合わせる
+このコードで上書きする
 
 Wordpressインストール
 
@@ -58,11 +58,11 @@ Loco Translateで日本語化
     ホームページ: Top
     投稿: Blog
 
+My Theme有効化
+
 外観 -> メニュー -> メニュー設定 -> メニューの位置
   Main Menuにチェック
   メニューの配置調整
-
-My Theme有効化
 
 My Plugin有効化
 
@@ -71,7 +71,7 @@ My Plugin有効化
 内容
 [myplugin_contact_form]
 
-メニューに追加
+メニューに問い合わせページを追加
 
 Tailwind Build
 

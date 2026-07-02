@@ -4,8 +4,6 @@
  * トップページ
  */
 
-$img = get_template_directory_uri() . '/assets/image/sample.svg';
-
 $frontPageConfig = MyTheme\loadConfig('front-page');
 
 $baseDir = __DIR__ . '/templates/front-page';

@@ -6,22 +6,28 @@
 
 require_once __DIR__ . '/src/helpers.php';
 
+// メニューの設定
 add_theme_support('menus');
 register_nav_menus(array(
 	'main-menu' => 'Main Menu',
 ));
 
+// テーマのセットアップ時に呼ばれる
 add_action('after_setup_theme', function () {
-	//echo 123;
+	error_log('独自テーマをセットアップしました。');
 });
 
+// CSS、JSの読み込み設定
 add_action('wp_enqueue_scripts', function () {
+	// ビルドされたCSSを読み込む
 	wp_enqueue_style(
 		'tailwind',
 		get_template_directory_uri() . '/dist/css/app.css',
 		[],
 		filemtime(__DIR__ . '/dist/css/app.css')
 	);
+
+	// swiper用設定
 
 	// Swiper CSS
 	wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', [], '10.0.0');
