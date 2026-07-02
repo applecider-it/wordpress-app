@@ -14,7 +14,7 @@ require_once __DIR__ . '/src/Install.php';
 require_once __DIR__ . '/src/View.php';
 
 require_once __DIR__ . '/src/Controllers/ContactController.php';
-require_once __DIR__ . '/src/Controllers/AdminContactController.php';
+require_once __DIR__ . '/src/Controllers/Admin/ContactController.php';
 
 // プラグイン追加時に動作する処理
 register_activation_hook(__FILE__, function () {
@@ -32,18 +32,16 @@ add_action('init', function () {
             // 不正リクエストチェック
             check_admin_referer('myplugin_contact_form');
 
-            $contact = new MyPlugin\Controllers\ContactController;
-
-            $contact->store();
+            $ctrl = new MyPlugin\Controllers\ContactController;
+            $ctrl->store();
         }
     }
 });
 
 // プラグインを呼び出すためのコードの設定
 add_shortcode('contact_form', function () {
-    $contact = new MyPlugin\Controllers\ContactController;
-
-    return $contact->create();
+    $ctrl = new MyPlugin\Controllers\ContactController;
+    return $ctrl->create();
 });
 
 // 管理画面設定
@@ -56,12 +54,12 @@ add_action(
             'manage_options',
             'contact-plugin',
             function () {
-                $adminContact = new MyPlugin\Controllers\AdminContactController;
+                $ctrl = new MyPlugin\Controllers\Admin\ContactController;
                 if (isset($_GET['id'])) {
-                    $adminContact->show((int) $_GET['id']);
+                    $ctrl->show((int) $_GET['id']);
                     return;
                 }
-                $adminContact->index();
+                $ctrl->index();
             },
             'dashicons-email'
         );

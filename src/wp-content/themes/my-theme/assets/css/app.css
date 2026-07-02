@@ -23,6 +23,11 @@
     @apply bg-white rounded-2xl shadow-xl p-6 hover:scale-105 transition;
   }
 
+  /* フォームのテキストボックス */
+  .app-form-input {
+    @apply w-full border rounded p-2;
+  }
+
   /* 投稿内容 */
   .app-post-content-container {
     li {

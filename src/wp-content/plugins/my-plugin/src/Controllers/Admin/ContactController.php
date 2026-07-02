@@ -1,13 +1,13 @@
 <?php
 
-namespace MyPlugin\Controllers;
+namespace MyPlugin\Controllers\Admin;
 
 use MyPlugin\View;
 
 /**
  * お問い合わせ管理画面
  */
-class AdminContactController
+class ContactController
 {
     /** 一覧 */
     function index()
@@ -19,7 +19,7 @@ class AdminContactController
         );
 
         $view = new View;
-        echo $view->render('admin-contacts', compact('rows'));
+        echo $view->render('admin/contact/index', compact('rows'));
     }
 
     /** 詳細 */
@@ -41,6 +41,6 @@ class AdminContactController
         }
 
         $view = new View;
-        echo $view->render('admin-contact', compact('row'));
+        echo $view->render('admin/contact/show', compact('row'));
     }
 }

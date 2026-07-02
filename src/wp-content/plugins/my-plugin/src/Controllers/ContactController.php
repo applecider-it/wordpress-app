@@ -13,7 +13,7 @@ class ContactController
     function create()
     {
         $view = new View;
-        return $view->render('contact-form');
+        return $view->render('contact/create');
     }
 
     /** お問い合わせ登録 */
