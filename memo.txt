@@ -36,3 +36,46 @@ npx tailwindcss -i ./assets/css/app.css -o ./dist/css/app.css --watch
 ベーステーマの場所
 
 ls -la ~/workspace/github/wordpress-app/src/wp-includes/theme-compat
+
+-----------------------------------
+
+セットアップ
+
+Wordpressダウンロード
+
+コードを合わせる
+
+Wordpressインストール
+
+Loco Translateで日本語化
+
+トップとブログ用のダミーの固定ページ作成
+
+設定 -> 表示設定 -> ホームページの設定
+  固定ページ
+    ホームページ: Top
+    投稿: Blog
+
+外観 -> メニュー -> メニュー設定 -> メニューの位置
+  Main Menuにチェック
+  メニューの配置調整
+
+My Theme有効化
+
+My Plugin有効化
+
+問い合わせ用の固定ページ作成
+
+内容
+[contact_form]
+
+メニューに追加
+
+-----------------------------------
+
+独自テーブル
+
+問い合わせ
+
+wp_contact_messages
+
