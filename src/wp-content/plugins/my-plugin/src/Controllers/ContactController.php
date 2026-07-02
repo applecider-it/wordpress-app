@@ -3,6 +3,7 @@
 namespace MyPlugin\Controllers;
 
 use MyPlugin\Services\Output\View;
+use MyPlugin\Services\Contact\EditService;
 
 /**
  * お問い合わせ管理
@@ -19,17 +20,8 @@ class ContactController
     /** お問い合わせ登録 */
     function store()
     {
-        global $wpdb;
-
-        $wpdb->insert(
-            $wpdb->prefix . 'myplugin_contact_messages',
-            array(
-                'name' => sanitize_text_field($_POST['name']),
-                'email' => sanitize_email($_POST['email']),
-                'subject' => sanitize_text_field($_POST['subject']),
-                'message' => sanitize_textarea_field($_POST['message']),
-            )
-        );
+        $editService = new EditService;
+        $editService->store($_POST);
 
         wp_redirect(add_query_arg('success', 1, wp_get_referer()));
         exit;

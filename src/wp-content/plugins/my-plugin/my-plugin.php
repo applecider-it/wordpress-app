@@ -10,11 +10,16 @@ if (!defined('ABSPATH')) {
     exit; // 直接アクセス防止
 }
 
-require_once __DIR__ . '/src/Services/System/Install.php';
-require_once __DIR__ . '/src/Services/Output/View.php';
+// オートロード設定
+spl_autoload_register(function ($class) {
+    $prefix = 'MyPlugin\\';
 
-require_once __DIR__ . '/src/Controllers/ContactController.php';
-require_once __DIR__ . '/src/Controllers/Admin/ContactController.php';
+    if (strpos($class, $prefix) === 0) {
+        $relative = str_replace('\\', '/', substr($class, strlen($prefix)));
+
+        require_once __DIR__ . '/src/' . $relative . '.php';
+    }
+});
 
 // プラグイン追加時に動作する処理
 register_activation_hook(__FILE__, function () {

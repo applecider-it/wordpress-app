@@ -3,6 +3,9 @@
 namespace MyPlugin\Controllers\Admin;
 
 use MyPlugin\Services\Output\View;
+use MyPlugin\Services\Admin\Contact\ListService;
+
+use MyPlugin\Models\ContactMessage;
 
 /**
  * お問い合わせ管理画面
@@ -12,11 +15,8 @@ class ContactController
     /** 一覧 */
     function index()
     {
-        global $wpdb;
-
-        $rows = $wpdb->get_results(
-            "SELECT * FROM {$wpdb->prefix}myplugin_contact_messages ORDER BY created_at DESC"
-        );
+        $listService = new ListService;
+        $rows = $listService->getList();
 
         $view = new View;
         echo $view->render('admin/contact/index', compact('rows'));
@@ -25,16 +25,7 @@ class ContactController
     /** 詳細 */
     function show(int $id)
     {
-        global $wpdb;
-
-        $table = $wpdb->prefix . 'myplugin_contact_messages';
-
-        $row = $wpdb->get_row(
-            $wpdb->prepare(
-                "SELECT * FROM {$table} WHERE id = %d",
-                $id
-            )
-        );
+        $row = ContactMessage::find($id);
 
         if (!$row) {
             wp_die('データがありません。');
