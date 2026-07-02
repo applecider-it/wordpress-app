@@ -12,7 +12,7 @@ class View
     {
         ob_start();
 
-        $path = dirname(dirname(dirname(__DIR__))) . '/templates/' . $name . '.php';
+        $path = dirname(dirname(dirname(__DIR__))) . '/views/' . $name . '.php';
 
         include($path);
 

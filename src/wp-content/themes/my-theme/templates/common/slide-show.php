@@ -1,3 +1,8 @@
+<?php
+
+/** @var array $list */
+?>
+
 <div class="swiper-container swiper-container1">
 	<div class="swiper swiper1">
 		<div class="swiper-wrapper">
