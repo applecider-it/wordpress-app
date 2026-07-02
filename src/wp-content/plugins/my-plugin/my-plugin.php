@@ -39,7 +39,7 @@ add_action('init', function () {
 });
 
 // プラグインを呼び出すためのコードの設定
-add_shortcode('contact_form', function () {
+add_shortcode('myplugin_contact_form', function () {
     $ctrl = new MyPlugin\Controllers\ContactController;
     return $ctrl->create();
 });

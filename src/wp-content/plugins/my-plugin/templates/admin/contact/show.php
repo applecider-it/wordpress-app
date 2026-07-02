@@ -17,6 +17,11 @@ $row = $data['row'];
         </tr>
 
         <tr>
+            <th>件名</th>
+            <td><?= esc_html($row->subject) ?></td>
+        </tr>
+
+        <tr>
             <th>名前</th>
             <td><?= esc_html($row->name) ?></td>
         </tr>
@@ -24,11 +29,6 @@ $row = $data['row'];
         <tr>
             <th>メール</th>
             <td><?= esc_html($row->email) ?></td>
-        </tr>
-
-        <tr>
-            <th>件名</th>
-            <td><?= esc_html($row->subject) ?></td>
         </tr>
 
         <tr>

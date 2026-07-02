@@ -9,23 +9,23 @@
     <table class='widefat striped'>
         <tr>
             <th>ID</th>
-            <th>日時</th>
+            <th>件名</th>
             <th>名前</th>
             <th>メール</th>
-            <th>件名</th>
+            <th>日時</th>
         </tr>
 
         <?php foreach ($data['rows'] as $row): ?>
             <tr>
                 <td><?= esc_html($row->id) ?></td>
-                <td><?= esc_html($row->created_at) ?></td>
-                <td><?= esc_html($row->name) ?></td>
-                <td><?= esc_html($row->email) ?></td>
                 <td>
                     <a href="<?= admin_url('admin.php?page=contact-plugin&id=' . $row->id) ?>">
                         <?= esc_html($row->subject) ?>
                     </a>
                 </td>
+                <td><?= esc_html($row->name) ?></td>
+                <td><?= esc_html($row->email) ?></td>
+                <td><?= esc_html($row->created_at) ?></td>
             </tr>
         <?php endforeach; ?>
 

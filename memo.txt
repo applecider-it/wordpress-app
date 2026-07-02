@@ -69,7 +69,7 @@ My Plugin有効化
 問い合わせ用の固定ページ作成
 
 内容
-[contact_form]
+[myplugin_contact_form]
 
 メニューに追加
 
