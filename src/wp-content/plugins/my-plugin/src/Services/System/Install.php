@@ -1,6 +1,6 @@
 <?php
 
-namespace MyPlugin;
+namespace MyPlugin\Services\System;
 
 class Install
 {

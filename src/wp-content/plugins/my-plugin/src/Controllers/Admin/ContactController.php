@@ -2,7 +2,7 @@
 
 namespace MyPlugin\Controllers\Admin;
 
-use MyPlugin\View;
+use MyPlugin\Services\Output\View;
 
 /**
  * お問い合わせ管理画面

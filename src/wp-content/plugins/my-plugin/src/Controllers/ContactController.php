@@ -2,7 +2,7 @@
 
 namespace MyPlugin\Controllers;
 
-use MyPlugin\View;
+use MyPlugin\Services\Output\View;
 
 /**
  * お問い合わせ管理
