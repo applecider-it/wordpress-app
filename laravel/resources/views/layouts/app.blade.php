@@ -28,6 +28,9 @@
                 <a href="/" class="text-gray-700 hover:text-blue-600">
                     Top
                 </a>
+                <a href="{{ route('post.index') }}" class="text-gray-700 hover:text-blue-600">
+                    Post
+                </a>
             </nav>
         </div>
     </header>

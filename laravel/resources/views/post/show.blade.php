@@ -20,7 +20,7 @@
 
     <div class="mt-8">
         <a
-            href="{{ route('home.index') }}"
+            href="{{ route('post.index') }}"
             class="inline-flex items-center rounded-lg border border-gray-300 px-5 py-2.5 text-gray-700 transition hover:bg-gray-100"
         >
             ← 投稿一覧へ戻る
