@@ -1,4 +1,5 @@
-<script src="<?= plugins_url('assets/js/contact/contact-form.js', dirname(__DIR__)) . '?' . filemtime(dirname(dirname(__DIR__)) . '/assets/js/contact/contact-form.js') ?>"></script>
+<script src="<?= plugins_url('assets/js/contact/contact-form.js', dirname(__DIR__)) . '?' .
+                    filemtime(dirname(dirname(__DIR__)) . '/assets/js/contact/contact-form.js') ?>"></script>
 
 <script type="module">
     const {

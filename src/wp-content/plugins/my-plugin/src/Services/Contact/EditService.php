@@ -17,10 +17,10 @@ class EditService
         $wpdb->insert(
             ContactMessage::tableName(),
             array(
-                'name' => sanitize_text_field($data['name']),
-                'email' => sanitize_email($data['email']),
-                'subject' => sanitize_text_field($data['subject']),
-                'message' => sanitize_textarea_field($data['message']),
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'subject' => $data['subject'],
+                'message' => $data['message'],
             )
         );
     }

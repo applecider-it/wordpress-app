@@ -39,6 +39,7 @@ class ContactController
     /** お問い合わせ登録バリデーション */
     private function storeValidation(\WP_REST_Request $request)
     {
+        // サニタイズ
         $name = ContactMessage::sanitizeName($request->get_param('name'));
         $email = ContactMessage::sanitizeEmail($request->get_param('email'));
         $subject = ContactMessage::sanitizeSubject($request->get_param('subject'));
