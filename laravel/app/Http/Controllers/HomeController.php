@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 /**
  * ホームコントローラー
@@ -12,13 +13,17 @@ class HomeController extends Controller
     /** 投稿一覧 */
     public function index()
     {
-        $url = 'http://localhost:8080/wp-json/wp/v2/posts';
+        $page = request('page', 1);
+        $limit = 5;
 
-        $json = file_get_contents($url);
+        $url = "http://localhost:8080/wp-json/wp/v2/posts?page={$page}&per_page={$limit}";
 
-        $posts = json_decode($json, true);
+        $response = Http::get($url);
 
-        return view('home.index', compact('posts'));
+        $posts = $response->json();
+        $totalPages = $response->header('X-WP-TotalPages');
+
+        return view('home.index', compact('posts', 'page', 'totalPages'));
     }
 
     /** 投稿詳細 */
@@ -26,9 +31,9 @@ class HomeController extends Controller
     {
         $url = 'http://localhost:8080/wp-json/wp/v2/posts?slug=' . urlencode($slug);
 
-        $json = file_get_contents($url);
+        $response = Http::get($url);
 
-        $ret = json_decode($json, true);
+        $ret = $response->json();
 
         $detail = $ret[0];
 

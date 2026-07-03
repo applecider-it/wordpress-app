@@ -31,6 +31,8 @@
             </article>
         @endforeach
     </div>
+
+    @include('partials.nav.simple-pagination', compact('page', 'totalPages'))
 </div>
 
 @endsection
