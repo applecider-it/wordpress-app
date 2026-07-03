@@ -32,6 +32,11 @@
     @apply w-full border rounded p-2;
   }
 
+  /* フォームのエラー */
+  .app-form-error {
+    @apply text-red-500 text-sm;
+  }
+
   /* 投稿内容 */
   .app-post-content-container {
     li {
@@ -48,42 +53,40 @@
   }
 }
 
+/* Wordpressが生成するHTMLのデザイン変更 */
+
+/* メニュー */
 ul.menu {
   @apply space-x-8 text-gray-700 font-medium;
 }
-
 ul.menu li {
   @apply inline-block;
 }
 
+/* 改ページリンク */
 div.nav-links {
   @apply flex justify-center items-center gap-3 mt-16;
 }
-
 div.nav-links > * {
   @apply px-4 py-2 rounded-xl border border-gray-200 hover:bg-gray-100 transition;
 }
-
 div.nav-links > span {
   @apply bg-black text-white shadow;
 }
 
+/* コメント欄 */
 div.comment-body {
   @apply space-y-5;
 }
-
 ol.commentlist a, form.comment-form a {
   @apply text-blue-600 hover:underline;
 }
-
 div.comment-respond {
   @apply mt-20;
 }
-
 form.comment-form input, form.comment-form textarea {
   @apply w-full border rounded p-2;
 }
-
 .form-submit .submit {
   @apply border border-black px-5 py-3 rounded-2xl mt-10 w-auto mx-auto block;
 }

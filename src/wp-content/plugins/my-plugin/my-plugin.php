@@ -28,19 +28,19 @@ register_activation_hook(__FILE__, function () {
     $install->exec();
 });
 
-// アクセスのたびに動作する初期化処理
-add_action('init', function () {
-    // ルート設定
-    if (isset($_POST['myplugin_action'])) {
-        // 登録処理
-        if ($_POST['myplugin_action'] === 'store_contact') {
-            // 不正リクエストチェック
-            check_admin_referer('myplugin_contact_form');
-
+// API設定
+add_action('rest_api_init', function () {
+    register_rest_route('myplugin', '/contact', [
+        'methods' => 'POST',
+        'callback' => function (WP_REST_Request $request) {
             $ctrl = new MyPlugin\Controllers\ContactController;
-            $ctrl->store();
-        }
-    }
+            return $ctrl->store($request);
+        },
+        'permission_callback' => function (WP_REST_Request $request) {
+            // Vue側から送信される「X-WP-Nonce」ヘッダーの検証
+            return wp_verify_nonce($request->get_header('X-WP-Nonce'), 'wp_rest');
+        },
+    ]);
 });
 
 // プラグインを呼び出すためのコードの設定
