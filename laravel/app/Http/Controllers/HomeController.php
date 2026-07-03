@@ -20,6 +20,17 @@ class HomeController extends Controller
 
         $response = Http::get($url);
 
+        if ($response->failed()) {
+            $error = $response->json();
+
+            // ページ数がオーバーしたときは404
+            if (($error['code'] ?? null) === 'rest_post_invalid_page_number') {
+                abort(404);
+            }
+
+            abort($response->status());
+        }
+
         $posts = $response->json();
         $totalPages = $response->header('X-WP-TotalPages');
 
@@ -32,6 +43,10 @@ class HomeController extends Controller
         $url = 'http://localhost:8080/wp-json/wp/v2/posts?slug=' . urlencode($slug);
 
         $response = Http::get($url);
+
+        if ($response->failed()) {
+            abort($response->status());
+        }
 
         $ret = $response->json();
 
