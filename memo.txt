@@ -59,6 +59,12 @@ ls -la ~/workspace/github/wordpress-app/src/wp-includes/theme-compat
 
 セットアップ
 
+----
+
+Wordpress
+
+
+
 Wordpressダウンロード
 
 このコードで上書きする
@@ -90,6 +96,26 @@ My Plugin有効化
 メニューに問い合わせページを追加
 
 Tailwind Build
+
+----
+
+Laravel
+
+
+cd ~/workspace/github/wordpress-app/laravel
+
+
+composer install
+
+npm ci
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+
+
 
 -----------------------------------
 
