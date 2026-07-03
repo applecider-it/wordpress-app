@@ -5,13 +5,9 @@
         createApp
     } = window.Vue;
 
-    // WordPressが発行する REST API 用の Nonce
-    const wpNonce = '<?php echo wp_create_nonce("wp_rest"); ?>';
-    const url = '<?php echo esc_url_raw(rest_url("myplugin/contact")); ?>';
-
     createApp(MypluginContactForm, {
-        wpNonce,
-        url
+        wpNonce: '<?php echo wp_create_nonce("wp_rest"); ?>',
+        url: '<?php echo esc_url_raw(rest_url("myplugin/contact")); ?>'
     }).mount('#my-contact-app');
 </script>
 

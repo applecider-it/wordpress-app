@@ -7,7 +7,7 @@ const MypluginContactForm = {
     url: String,
   },
 
-  setup(props) {
+  setup({ url, wpNonce }) {
     const { ref, onMounted } = Vue;
 
     const formData = ref({
@@ -28,9 +28,9 @@ const MypluginContactForm = {
       errorMessage.value = '';
 
       try {
-        const response = await axios.post(props.url, formData.value, {
+        const response = await axios.post(url, formData.value, {
           headers: {
-            'X-WP-Nonce': props.wpNonce,
+            'X-WP-Nonce': wpNonce, // WordPressが発行する REST API 用の Nonce
             'Content-Type': 'application/json',
           },
         });
