@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+
+    public function index()
+    {
+        $url = 'http://localhost:8080/wp-json/wp/v2/posts';
+
+        $json = file_get_contents($url);
+
+        $posts = json_decode($json, true);
+
+        return view('home.index', compact('posts'));
+    }
+
+    public function detail(string $slug)
+    {
+        $url = 'http://localhost:8080/wp-json/wp/v2/posts?slug=' . urlencode($slug);
+
+        $json = file_get_contents($url);
+
+        $ret = json_decode($json, true);
+
+        $detail = $ret[0];
+
+        return view('home.detail', compact('detail'));
+    }
+
+}
