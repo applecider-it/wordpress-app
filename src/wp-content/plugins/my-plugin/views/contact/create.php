@@ -1,12 +1,13 @@
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 <script type="module">
     const {
         createApp,
         ref,
         onMounted
     } = Vue;
+
+    // WordPressが発行する REST API 用の Nonce
+    const wpNonce = '<?php echo wp_create_nonce("wp_rest"); ?>';
+    const url = '<?php echo esc_url_raw(rest_url("myplugin/contact")); ?>';
 
     const App = {
         setup() {
@@ -22,16 +23,12 @@
             const errorMessage = ref('');
             const errors = ref({});
 
-            // WordPressが発行する REST API 用の Nonce
-            const wpNonce = '<?php echo wp_create_nonce("wp_rest"); ?>';
-
             // 送信処理
             const submitForm = async () => {
                 isSubmitting.value = true;
                 errorMessage.value = '';
 
                 try {
-                    const url = '<?php echo esc_url_raw(rest_url("myplugin/contact")); ?>';
                     const response = await axios.post(url, formData.value, {
                         headers: {
                             'X-WP-Nonce': wpNonce,
