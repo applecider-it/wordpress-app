@@ -6,6 +6,7 @@ cd ~/workspace/github/wordpress-app/src
 
 Wordpress
 
+
 cd ~/workspace/github/wordpress-app/src
 
 foreman start
@@ -25,7 +26,7 @@ admin / adminadmin
 
 admin@localhost.com
 
------------------------------------
+----
 
 Tailwind Build
 
@@ -46,16 +47,9 @@ foreman start
 
 composer dev
 
-----
 
 http://127.0.0.1:8000
 
-
------------------------------------
-
-ベーステーマの場所
-
-ls -la ~/workspace/github/wordpress-app/src/wp-includes/theme-compat
 
 -----------------------------------
 
@@ -99,6 +93,7 @@ My Plugin有効化
 
 Tailwind Build
 
+
 ----
 
 Laravel
@@ -118,7 +113,6 @@ php artisan key:generate
 php artisan migrate
 
 
-
 -----------------------------------
 
 独自テーブル
@@ -126,3 +120,11 @@ php artisan migrate
 問い合わせ
 
 wp_myplugin_contact_messages
+
+
+-----------------------------------
+
+ベーステーマの場所
+
+ls -la ~/workspace/github/wordpress-app/src/wp-includes/theme-compat
+
