@@ -3,56 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+
+use App\Services\Post\ApiService;
 
 /**
  * ホームコントローラー
  */
 class HomeController extends Controller
 {
+    function  __construct(private ApiService $apiService) {}
+
     /** 投稿一覧 */
     public function index()
     {
         $page = request('page', 1);
         $limit = 5;
 
-        $url = "http://localhost:8080/wp-json/wp/v2/posts?page={$page}&per_page={$limit}";
+        $data = $this->apiService->getPosts($page, $limit);
 
-        $response = Http::get($url);
-
-        if ($response->failed()) {
-            $error = $response->json();
-
-            // ページ数がオーバーしたときは404
-            if (($error['code'] ?? null) === 'rest_post_invalid_page_number') {
-                abort(404);
-            }
-
-            abort($response->status());
-        }
-
-        $posts = $response->json();
-        $totalPages = $response->header('X-WP-TotalPages');
-
-        return view('home.index', compact('posts', 'page', 'totalPages'));
+        return view('home.index', $data);
     }
 
     /** 投稿詳細 */
     public function detail(string $slug)
     {
-        $url = 'http://localhost:8080/wp-json/wp/v2/posts?slug=' . urlencode($slug);
-
-        $response = Http::get($url);
-
-        if ($response->failed()) {
-            abort($response->status());
-        }
-
-        $ret = $response->json();
-
-        if (count($ret) === 0) abort(404);
-
-        $detail = $ret[0];
+        $detail = $this->apiService->getPost($slug);
 
         return view('home.detail', compact('detail'));
     }
