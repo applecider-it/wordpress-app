@@ -35,6 +35,8 @@ class HomeController extends Controller
 
         $ret = $response->json();
 
+        if (count($ret) === 0) abort(404);
+
         $detail = $ret[0];
 
         return view('home.detail', compact('detail'));
