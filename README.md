@@ -4,6 +4,7 @@
 
 - 独自テーマ
 - 独自プラグイン（お問い合わせフォーム）
+- ヘッドレスCMS（Laravel）
 
 独自プラグインのTailwind管理は、独自テーマでしている。
 
@@ -14,11 +15,15 @@
 wp_myplugin_contact_messages
 
 
-## 利用しているツール
+## Wordpress側で利用しているツール
 
 - Tailwind3
 
 Viteは使っていない
+
+## ヘッドレスCMS（Laravel）
+
+投稿の動作確認のみ。
 
 ## その他
 
