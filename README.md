@@ -20,3 +20,6 @@ wp_myplugin_contact_messages
 
 Viteは使っていない
 
+## その他
+
+[評価](./documents/evaluation.md)
