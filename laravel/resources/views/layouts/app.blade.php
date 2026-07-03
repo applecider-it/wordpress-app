@@ -29,7 +29,10 @@
                     Top
                 </a>
                 <a href="{{ route('post.index') }}" class="text-gray-700 hover:text-blue-600">
-                    Post
+                    投稿
+                </a>
+                <a href="{{ route('page.index') }}" class="text-gray-700 hover:text-blue-600">
+                    固定ページ
                 </a>
             </nav>
         </div>
