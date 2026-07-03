@@ -13,7 +13,7 @@ use MyPlugin\Models\ContactMessage;
 class ContactController
 {
     /** 一覧 */
-    function index()
+    public function index()
     {
         $listService = new ListService;
         $rows = $listService->getList();
@@ -23,7 +23,7 @@ class ContactController
     }
 
     /** 詳細 */
-    function show(int $id)
+    public function show(int $id)
     {
         $row = ContactMessage::find($id);
 

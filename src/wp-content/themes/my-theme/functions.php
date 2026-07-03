@@ -12,11 +12,6 @@ register_nav_menus(array(
     'main-menu' => 'Main Menu',
 ));
 
-// テーマのセットアップ時に呼ばれる
-add_action('after_setup_theme', function () {
-    error_log('独自テーマをセットアップしました。');
-});
-
 // CSS、JSの読み込み設定
 add_action('wp_enqueue_scripts', function () {
     // ビルドされたCSSを読み込む

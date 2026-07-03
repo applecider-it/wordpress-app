@@ -13,7 +13,7 @@ use MyPlugin\Models\ContactMessage;
 class ContactController
 {
     /** お問い合わせフォーム */
-    function create()
+    public function create()
     {
         $view = new View;
         return $view->render('contact/create');

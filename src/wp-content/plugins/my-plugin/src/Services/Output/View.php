@@ -14,7 +14,7 @@ class View
 
         $path = dirname(dirname(dirname(__DIR__))) . '/views/' . $name . '.php';
 
-        include($path);
+        require($path);
 
         return ob_get_clean();
     }
