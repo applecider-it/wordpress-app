@@ -4,8 +4,14 @@ cd ~/workspace/github/wordpress-app/src
 
 -----------------------------------
 
+Wordpress
+
+cd ~/workspace/github/wordpress-app/src
+
 foreman start
 
+
+cd ~/workspace/github/wordpress-app/src
 
 php -S localhost:8080 -t .
 
@@ -21,17 +27,27 @@ admin@localhost.com
 
 -----------------------------------
 
-My theme
-
+Tailwind Build
 
 cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
-
-
-Tailwind Build
 
 npx tailwindcss -i ./assets/css/app.css -o ./dist/css/app.css --watch
 
 独自プラグインのCSS管理もここでしている
+
+-----------------------------------
+
+Laravel
+
+
+cd ~/workspace/github/wordpress-app/laravel
+
+composer dev
+
+----
+
+http://127.0.0.1:8000
+
 
 -----------------------------------
 

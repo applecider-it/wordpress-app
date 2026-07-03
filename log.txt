@@ -31,3 +31,4 @@ npx tailwindcss init -p
 
 composer create-project laravel/laravel myapp
 
+npm install
