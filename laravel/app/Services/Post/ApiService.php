@@ -3,6 +3,7 @@
 namespace App\Services\Post;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 /**
  * 投稿のAPI管理
@@ -15,6 +16,8 @@ class ApiService
         $baseUrl = config('myapp.cmsApiBaseUrl');
 
         $url = "{$baseUrl}/posts?page={$page}&per_page={$limit}";
+
+        Log::info("getPosts url: {$url}");
 
         $response = Http::get($url);
 
@@ -41,6 +44,8 @@ class ApiService
         $baseUrl = config('myapp.cmsApiBaseUrl');
 
         $url = $baseUrl . '/posts?slug=' . urlencode($slug);
+
+        Log::info("getPost url: {$url}");
 
         $response = Http::get($url);
 

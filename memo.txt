@@ -42,6 +42,8 @@ Laravel
 
 cd ~/workspace/github/wordpress-app/laravel
 
+foreman start
+
 composer dev
 
 ----
