@@ -5,6 +5,8 @@ namespace MyPlugin\Controllers;
 use MyPlugin\Services\Output\View;
 use MyPlugin\Services\Contact\EditService;
 
+use MyPlugin\Models\ContactMessage;
+
 /**
  * お問い合わせ管理
  */
@@ -37,17 +39,17 @@ class ContactController
     /** お問い合わせ登録バリデーション */
     private function storeValidation(\WP_REST_Request $request)
     {
-        $name    = sanitize_text_field($request->get_param('name'));
-        $email   = sanitize_email($request->get_param('email'));
-        $subject = sanitize_text_field($request->get_param('subject'));
-        $message = sanitize_textarea_field($request->get_param('message'));
+        $name    = ContactMessage::sanitizeName($request->get_param('name'));
+        $email   = ContactMessage::sanitizeEmail($request->get_param('email'));
+        $subject = ContactMessage::sanitizeSubject($request->get_param('subject'));
+        $message = ContactMessage::sanitizeMessage($request->get_param('message'));
 
         // バリデーション
         $errors = [];
-        if (empty($name))    $errors['name']    = '名前は必須です';
-        if (!is_email($email)) $errors['email']   = '正しいメールアドレスを入力してください';
-        if (empty($subject)) $errors['subject'] = '件名は必須です';
-        if (empty($message)) $errors['message'] = '内容は必須です';
+        $val = ContactMessage::validationName($name); if ($val) $errors['name'] = $val;
+        $val = ContactMessage::validationEmail($email); if ($val) $errors['email'] = $val;
+        $val = ContactMessage::validationSubject($subject); if ($val) $errors['subject'] = $val;
+        $val = ContactMessage::validationMessage($message); if ($val) $errors['message'] = $val;
 
         $data = compact('name', 'email', 'subject', 'message');
 

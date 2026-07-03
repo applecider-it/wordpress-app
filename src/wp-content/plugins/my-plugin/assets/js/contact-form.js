@@ -78,25 +78,25 @@ const MypluginContactForm = {
                 <div>
                     <div>名前</div>
                     <div><input type="text" v-model="formData.name" class="app-form-input" :disabled="isSubmitting"></div>
-                    <div v-if="errors.name" class="app-form-error">{{ errors.name }}</div>
+                    <div v-if="errors.name" class="app-form-error">{{ errors.name[0] }}</div>
                 </div>
 
                 <div>
                     <div>メール</div>
                     <div><input type="text" v-model="formData.email" class="app-form-input" :disabled="isSubmitting"></div>
-                    <div v-if="errors.email" class="app-form-error">{{ errors.email }}</div>
+                    <div v-if="errors.email" class="app-form-error">{{ errors.email[0] }}</div>
                 </div>
 
                 <div>
                     <div>件名</div>
                     <div><input type="text" v-model="formData.subject" class="app-form-input" :disabled="isSubmitting"></div>
-                    <div v-if="errors.subject" class="app-form-error">{{ errors.subject }}</div>
+                    <div v-if="errors.subject" class="app-form-error">{{ errors.subject[0] }}</div>
                 </div>
 
                 <div>
                     <div>内容</div>
                     <div><textarea v-model="formData.message" rows="6" class="app-form-input" :disabled="isSubmitting"></textarea></div>
-                    <div v-if="errors.message" class="app-form-error">{{ errors.message }}</div>
+                    <div v-if="errors.message" class="app-form-error">{{ errors.message[0] }}</div>
                 </div>
             </div>
 
