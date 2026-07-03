@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Log;
 class ApiService
 {
     /** 投稿一覧取得 */
-    public function getPosts(int $page, int $limit)
+    public function getPosts(int $page, int $perPage)
     {
         $baseUrl = config('myapp.cmsApiBaseUrl');
 
-        $url = "{$baseUrl}/posts?page={$page}&per_page={$limit}";
+        $url = "{$baseUrl}/posts?page={$page}&per_page={$perPage}";
 
         Log::info("getPosts url: {$url}");
 
@@ -35,7 +35,7 @@ class ApiService
         $posts = $response->json();
         $totalPages = $response->header('X-WP-TotalPages');
 
-        return compact('posts', 'page', 'totalPages');
+        return compact('posts', 'totalPages');
     }
 
     /** 投稿取得 */

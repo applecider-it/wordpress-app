@@ -17,11 +17,11 @@ class HomeController extends Controller
     public function index()
     {
         $page = request('page', 1);
-        $limit = 5;
+        $perPage = 5;
 
-        $data = $this->apiService->getPosts($page, $limit);
+        $data = $this->apiService->getPosts($page, $perPage);
 
-        return view('home.index', $data);
+        return view('home.index', $data + compact('page'));
     }
 
     /** 投稿詳細 */
