@@ -70,22 +70,3 @@ add_action(
         );
     }
 );
-
-// CSS、JSの読み込み設定
-add_action('wp_enqueue_scripts', function () {
-    // Vue 3 を読み込み
-    wp_enqueue_script(
-        'vue-cdn',
-        'https://unpkg.com/vue@3/dist/vue.global.js',
-        [],
-        '3.x'
-    );
-
-    // Axios を読み込み
-    wp_enqueue_script(
-        'axios-cdn',
-        'https://unpkg.com/axios/dist/axios.min.js',
-        [],
-        '1.x'
-    );
-});
