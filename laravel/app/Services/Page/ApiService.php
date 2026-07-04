@@ -5,6 +5,8 @@ namespace App\Services\Page;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * 固定ページのAPI管理
  */
@@ -24,12 +26,14 @@ class ApiService
         if ($response->failed()) {
             $error = $response->json();
 
+            Log::info("getPages error: " . $response->status(), $error);
+
             // ページ数がオーバーしたときは404
             if (($error['code'] ?? null) === 'rest_post_invalid_page_number') {
-                abort(404);
+                throw new NotFoundHttpException;
             }
 
-            abort($response->status());
+            throw new \Exception('getPagesでエラー');
         }
 
         $posts = $response->json();
@@ -50,12 +54,16 @@ class ApiService
         $response = Http::get($url);
 
         if ($response->failed()) {
-            abort($response->status());
+            $error = $response->json();
+
+            Log::info("getPage error: " . $response->status(), $error);
+
+            throw new \Exception('getPageでエラー');
         }
 
         $ret = $response->json();
 
-        if (count($ret) === 0) abort(404);
+        if (count($ret) === 0) throw new NotFoundHttpException;
 
         $detail = $ret[0];
 

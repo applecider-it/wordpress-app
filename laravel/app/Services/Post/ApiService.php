@@ -5,6 +5,8 @@ namespace App\Services\Post;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * 投稿のAPI管理
  */
@@ -26,12 +28,14 @@ class ApiService
         if ($response->failed()) {
             $error = $response->json();
 
+            Log::info("getPosts error: " . $response->status(), $error);
+
             // ページ数がオーバーしたときは404
             if (($error['code'] ?? null) === 'rest_post_invalid_page_number') {
-                abort(404);
+                throw new NotFoundHttpException;
             }
 
-            abort($response->status());
+            throw new \Exception('getPostsでエラー');
         }
 
         $posts = $response->json();
@@ -52,12 +56,16 @@ class ApiService
         $response = Http::get($url);
 
         if ($response->failed()) {
-            abort($response->status());
+            $error = $response->json();
+
+            Log::info("getPost error: " . $response->status(), $error);
+
+            throw new \Exception('getPostでエラー');
         }
 
         $ret = $response->json();
 
-        if (count($ret) === 0) abort(404);
+        if (count($ret) === 0) throw new NotFoundHttpException;
 
         $detail = $ret[0];
 
@@ -71,12 +79,16 @@ class ApiService
 
         $url = "{$baseUrl}/categories";
 
-        Log::info("getPosts url: {$url}");
+        Log::info("getCategories url: {$url}");
 
         $response = Http::get($url);
 
         if ($response->failed()) {
-            abort($response->status());
+            $error = $response->json();
+
+            Log::info("getCategories error: " . $response->status(), $error);
+
+            throw new \Exception('getCategoriesでエラー');
         }
 
         $categories = $response->json();
