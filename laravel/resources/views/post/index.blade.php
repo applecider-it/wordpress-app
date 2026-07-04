@@ -32,31 +32,37 @@
         @endif
     </div>
 
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        @foreach ($posts as $post)
-            <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <h2 class="mb-4 line-clamp-2 text-xl font-semibold text-gray-800">
-                    {{ $post['title']['rendered'] }}
-                </h2>
+    @if($totalPages > 0)
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            @foreach ($posts as $post)
+                <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                    <h2 class="mb-4 line-clamp-2 text-xl font-semibold text-gray-800">
+                        {{ $post['title']['rendered'] }}
+                    </h2>
 
-                <div class="flex justify-end">
-                    <a
-                        href="{{ route('post.show', ['slug' => $post['slug']]) }}"
-                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
-                    >
-                        詳細を見る
-                        <span>→</span>
-                    </a>
-                </div>
+                    <div class="flex justify-end">
+                        <a
+                            href="{{ route('post.show', ['slug' => $post['slug']]) }}"
+                            class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+                        >
+                            詳細を見る
+                            <span>→</span>
+                        </a>
+                    </div>
 
-                <div>
-                    @foreach ($post['categories'] as $categoryId)
-                        <span class="inline-block mr-2 text-xs">{{ $hashedCategories[$categoryId]['name'] }}</span>
-                    @endforeach
-                </div>
-            </article>
-        @endforeach
-    </div>
+                    <div>
+                        @foreach ($post['categories'] as $categoryId)
+                            <span class="inline-block mr-2 text-xs">{{ $hashedCategories[$categoryId]['name'] }}</span>
+                        @endforeach
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    @else
+        <div class="my-10">
+            レコードが見つかりません。
+        </div>
+    @endif
 
     @include('partials.nav.simple-pagination', compact('page', 'totalPages', 'params'))
 </div>
