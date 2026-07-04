@@ -1,9 +1,9 @@
-@if($totalPages > 0)
+@if($pagination->totalPages > 0)
     <div class="mt-10 flex items-center justify-center gap-4">
 
-        @if($page > 1)
+        @if($pagination->page > 1)
             <a
-                href="?{{ http_build_query(['page' => $page - 1] + ($params ?? [])) }}"
+                href="?{{ http_build_query(['page' => $pagination->page - 1] + $pagination->params) }}"
                 class="rounded-lg border border-gray-300 px-4 py-2 text-gray-700 transition hover:bg-gray-100"
             >
                 ← 前へ
@@ -17,12 +17,13 @@
         @endif
 
         <span class="text-sm font-medium text-gray-600">
-            {{ $page }} / {{ $totalPages }}
+            {{ $pagination->total }}件
+            ( {{ $pagination->page }} / {{ $pagination->totalPages }} )
         </span>
 
-        @if($page < $totalPages)
+        @if($pagination->page < $pagination->totalPages)
             <a
-                href="?{{ http_build_query(['page' => $page + 1] + ($params ?? [])) }}"
+                href="?{{ http_build_query(['page' => $pagination->page + 1] + $pagination->params) }}"
                 class="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
             >
                 次へ →

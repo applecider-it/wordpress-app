@@ -10,15 +10,15 @@
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        @foreach ($posts as $post)
+        @foreach ($pages as $page)
             <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
                 <h2 class="mb-4 line-clamp-2 text-xl font-semibold text-gray-800">
-                    {{ $post['title']['rendered'] }}
+                    {{ $page['title']['rendered'] }}
                 </h2>
 
                 <div class="flex justify-end">
                     <a
-                        href="{{ route('page.show', ['slug' => $post['slug']]) }}"
+                        href="{{ route('page.show', ['slug' => $page['slug']]) }}"
                         class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
                     >
                         詳細を見る
@@ -29,7 +29,7 @@
         @endforeach
     </div>
 
-    @include('partials.nav.simple-pagination', compact('page', 'totalPages'))
+    @include('partials.nav.simple-pagination', ['pagination' => $pagination])
 </div>
 
 @endsection

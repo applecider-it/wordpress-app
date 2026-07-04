@@ -36,10 +36,11 @@ class ApiService
             throw new \Exception('getPagesでエラー');
         }
 
-        $posts = $response->json();
+        $pages = $response->json();
         $totalPages = $response->header('X-WP-TotalPages');
+        $total = $response->header('X-WP-Total');
 
-        return compact('posts', 'totalPages');
+        return compact('pages', 'totalPages', 'total');
     }
 
     /** 固定ページ取得 */

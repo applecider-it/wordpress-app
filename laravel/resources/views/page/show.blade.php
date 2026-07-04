@@ -8,12 +8,12 @@
 
         <header class="mb-8 border-b border-gray-200 pb-6">
             <h1 class="text-4xl font-bold leading-tight text-gray-900">
-                {{ $detail['title']['rendered'] }}
+                {{ $page['title']['rendered'] }}
             </h1>
         </header>
 
         <div class="prose prose-lg max-w-none app-post-content-container">
-            {!! $detail['content']['rendered'] !!}
+            {!! $page['content']['rendered'] !!}
         </div>
 
     </article>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\Post\ApiService;
+use App\Services\Nav\SimplePagination;
 
 class PostController extends Controller
 {
@@ -25,14 +26,24 @@ class PostController extends Controller
             $search
         );
 
+        $posts = $data['posts'];
+
         $categories = $this->apiService->getCategories();
         $hashedCategories = array_column($categories, null, 'id');
 
         $params = request()->all();
         unset($params['page']);
 
-        return view('post.index', $data + compact(
-            'page',
+        $pagination = new SimplePagination(
+            $data['total'],
+            $data['totalPages'],
+            $page,
+            $params,
+        );
+
+        return view('post.index', compact(
+            'posts',
+            'pagination',
             'hashedCategories',
             'params',
             'searchCategory',

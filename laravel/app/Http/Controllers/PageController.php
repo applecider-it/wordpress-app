@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\Page\ApiService;
+use App\Services\Nav\SimplePagination;
 
 class PageController extends Controller
 {
@@ -18,14 +19,23 @@ class PageController extends Controller
 
         $data = $this->apiService->getPages($page, $perPage);
 
-        return view('page.index', $data + compact('page'));
+        $pages = $data['pages'];
+
+        $pagination = new SimplePagination(
+            $data['total'],
+            $data['totalPages'],
+            $page,
+            [],
+        );
+
+        return view('page.index', compact('pages', 'pagination'));
     }
 
     /** 固定ページ詳細 */
     public function show(string $slug)
     {
-        $detail = $this->apiService->getPage($slug);
+        $page = $this->apiService->getPage($slug);
 
-        return view('page.show', compact('detail'));
+        return view('page.show', compact('page'));
     }
 }

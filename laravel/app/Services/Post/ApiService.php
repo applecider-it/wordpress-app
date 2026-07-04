@@ -40,8 +40,9 @@ class ApiService
 
         $posts = $response->json();
         $totalPages = $response->header('X-WP-TotalPages');
+        $total = $response->header('X-WP-Total');
 
-        return compact('posts', 'totalPages');
+        return compact('posts', 'totalPages', 'total');
     }
 
     /** 投稿取得 */
