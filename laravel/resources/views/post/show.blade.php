@@ -8,12 +8,18 @@
 
         <header class="mb-8 border-b border-gray-200 pb-6">
             <h1 class="text-4xl font-bold leading-tight text-gray-900">
-                {{ $detail['title']['rendered'] }}
+                {{ $post['title']['rendered'] }}
             </h1>
+
+            <div class="mt-3">
+                @foreach ($post['categories'] as $categoryId)
+                    <a href="{{ route('post.index') }}?category={{ $categoryId }}" class="inline-block mr-2 text-xs">{{ $hashedCategories[$categoryId]['name'] }}</a>
+                @endforeach
+            </div>
         </header>
 
         <div class="prose prose-lg max-w-none app-post-content-container">
-            {!! $detail['content']['rendered'] !!}
+            {!! $post['content']['rendered'] !!}
         </div>
 
     </article>

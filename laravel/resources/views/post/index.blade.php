@@ -50,8 +50,8 @@
                 </div>
 
                 <div>
-                    @foreach ($post['categories'] as $category)
-                        <span class="inline-block mr-2 text-xs">{{ $hashedCategories[$category]['name'] }}</span>
+                    @foreach ($post['categories'] as $categoryId)
+                        <span class="inline-block mr-2 text-xs">{{ $hashedCategories[$categoryId]['name'] }}</span>
                     @endforeach
                 </div>
             </article>

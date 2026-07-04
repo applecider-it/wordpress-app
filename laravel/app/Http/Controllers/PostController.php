@@ -38,8 +38,14 @@ class PostController extends Controller
     /** 投稿詳細 */
     public function show(string $slug)
     {
-        $detail = $this->apiService->getPost($slug);
+        $post = $this->apiService->getPost($slug);
 
-        return view('post.show', compact('detail'));
+        $categories = $this->apiService->getCategories();
+        $hashedCategories = array_column($categories, null, 'id');
+
+        return view('post.show', compact(
+            'post',
+            'hashedCategories'
+        ));
     }
 }
