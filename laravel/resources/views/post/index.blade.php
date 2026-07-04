@@ -12,6 +12,21 @@
         </p>
     </div>
 
+    <div class="my-3">
+        <form action="{{ route('post.index') }}">
+            @include('post.partials.search-hidden')
+            <input type="text" name="search" value="{{ $search }}" class="border p-2" />
+            <input type="submit" alue="検索" class="border p-2" />
+        </form>
+    </div>
+
+    <div class="my-3">
+        @foreach ($hashedCategories as $category)
+            <a class="inline-block mr-2 text-sm {{ $searchCategory == $category['id'] ? 'text-blue-400' : '' }}"
+            href="{{ route('post.index') }}?{{ http_build_query(['category' => $category['id']] + $params) }}">{{ $category['name'] }}</a>
+        @endforeach
+    </div>
+
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         @foreach ($posts as $post)
             <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
@@ -28,11 +43,17 @@
                         <span>→</span>
                     </a>
                 </div>
+
+                <div>
+                    @foreach ($post['categories'] as $category)
+                        <span class="inline-block mr-2 text-xs">{{ $hashedCategories[$category]['name'] }}</span>
+                    @endforeach
+                </div>
             </article>
         @endforeach
     </div>
 
-    @include('partials.nav.simple-pagination', compact('page', 'totalPages'))
+    @include('partials.nav.simple-pagination', compact('page', 'totalPages', 'params'))
 </div>
 
 @endsection

@@ -14,11 +14,25 @@ class PostController extends Controller
     public function index()
     {
         $page = request('page', 1);
+        $searchCategory = request('category', null);
+        $search = request('search', '');
         $perPage = 5;
 
-        $data = $this->apiService->getPosts($page, $perPage);
+        $data = $this->apiService->getPosts($page, $perPage, $searchCategory, $search);
 
-        return view('post.index', $data + compact('page'));
+        $categories = $this->apiService->getCategories();
+        $hashedCategories = array_column($categories, null, 'id');
+
+        $params = request()->all();
+        unset($params['page']);
+
+        return view('post.index', $data + compact(
+            'page',
+            'hashedCategories',
+            'params',
+            'searchCategory',
+            'search',
+        ));
     }
 
     /** 投稿詳細 */

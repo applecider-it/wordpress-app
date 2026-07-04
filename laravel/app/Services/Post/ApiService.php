@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\Log;
 class ApiService
 {
     /** 投稿一覧取得 */
-    public function getPosts(int $page, int $perPage)
+    public function getPosts(int $page, int $perPage, ?int $searchCategory, string $search)
     {
         $baseUrl = config('myapp.cmsApiBaseUrl');
 
         $url = "{$baseUrl}/posts?page={$page}&per_page={$perPage}";
+        if ($searchCategory) $url .= "&categories={$searchCategory}";
+        if ($search) $url .= "&search={$search}";
 
         Log::info("getPosts url: {$url}");
 
@@ -60,5 +62,25 @@ class ApiService
         $detail = $ret[0];
 
         return $detail;
+    }
+
+    /** カテゴリー一覧取得 */
+    public function getCategories()
+    {
+        $baseUrl = config('myapp.cmsApiBaseUrl');
+
+        $url = "{$baseUrl}/categories";
+
+        Log::info("getPosts url: {$url}");
+
+        $response = Http::get($url);
+
+        if ($response->failed()) {
+            abort($response->status());
+        }
+
+        $categories = $response->json();
+
+        return $categories;
     }
 }
