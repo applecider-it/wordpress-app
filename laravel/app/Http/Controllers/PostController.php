@@ -18,7 +18,12 @@ class PostController extends Controller
         $search = request('search', '');
         $perPage = 5;
 
-        $data = $this->apiService->getPosts($page, $perPage, $searchCategory, $search);
+        $data = $this->apiService->getPosts(
+            $page,
+            $perPage,
+            $searchCategory,
+            $search
+        );
 
         $categories = $this->apiService->getCategories();
         $hashedCategories = array_column($categories, null, 'id');
