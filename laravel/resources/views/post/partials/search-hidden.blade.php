@@ -1,1 +1,6 @@
-<input type="hidden" name="category" value="{{ $searchCategory }}" />
+@foreach ($params as $key => $val)
+    @if($key === $exclude)
+      @continue
+    @endif
+    <input type="hidden" name="{{ $key }}" value="{{ $val }}" />
+@endforeach

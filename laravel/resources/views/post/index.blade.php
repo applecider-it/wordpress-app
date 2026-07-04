@@ -14,7 +14,7 @@
 
     <div class="my-3">
         <form action="{{ route('post.index') }}">
-            @include('post.partials.search-hidden')
+            @include('post.partials.search-hidden', ['exclude' => 'search'])
             <input type="text" name="search" value="{{ $search }}" class="border p-2" />
             <input type="submit" alue="検索" class="border p-2" />
         </form>
