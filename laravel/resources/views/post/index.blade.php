@@ -25,6 +25,11 @@
             <a class="inline-block mr-2 text-sm {{ $searchCategory == $category['id'] ? 'text-blue-400' : '' }}"
             href="{{ route('post.index') }}?{{ http_build_query(['category' => $category['id']] + $params) }}">{{ $category['name'] }}</a>
         @endforeach
+
+        @if($searchCategory)
+            <a class="inline-block ml-5 text-sm"
+            href="{{ route('post.index') }}?{{ http_build_query(['category' => null] + $params) }}">絞り込み解除</a>
+        @endif
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
