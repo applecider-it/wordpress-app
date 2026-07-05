@@ -4,6 +4,13 @@ cd ~/workspace/github/wordpress-app/src
 
 -----------------------------------
 
+port
+
+wordpress: 8080
+laravel: 8000
+
+-----------------------------------
+
 Wordpress
 
 
