@@ -151,6 +151,9 @@ cd ~/workspace/github/wordpress-app/astro
 
 npm ci
 
+cp .env.example .env
+
+
 
 
 -----------------------------------

@@ -10,7 +10,7 @@ import { sleep } from '@/services/system/time';
 import type { Post } from '@/types/types';
 import * as cheerio from 'cheerio';
 
-const baseUrl = 'http://localhost:8080/wp-json/wp/v2';
+const baseUrl = import.meta.env.APP_CMS_API_BASE_URL;
 
 /** 記事一覧取得 */
 export async function getPosts(forceDownload = false) {
