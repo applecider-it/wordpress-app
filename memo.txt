@@ -9,6 +9,8 @@ port
 wordpress: 8080
 laravel: 8000
 vite: 5173
+astro: 4321
+astro確認: 4322
 
 -----------------------------------
 
@@ -58,6 +60,25 @@ composer dev
 
 http://127.0.0.1:8000
 
+-----------------------------------
+
+Astro
+
+
+cd ~/workspace/github/wordpress-app/astro
+
+npm run dev
+
+http://localhost:4321/
+
+
+ビルド
+
+npm run build
+
+php -S localhost:4322 -t ./dist
+
+http://localhost:4322/
 
 -----------------------------------
 
@@ -119,6 +140,17 @@ cp .env.example .env
 php artisan key:generate
 
 php artisan migrate
+
+
+----
+
+Astro
+
+
+cd ~/workspace/github/wordpress-app/astro
+
+npm ci
+
 
 
 -----------------------------------
