@@ -39,6 +39,12 @@ php artisan make:controller PostController
 
 php artisan make:controller PageController
 
+
 -----------------------------------
 
+
 npm create astro@latest
+
+npm install -D tailwindcss@^3.4.18 postcss autoprefixer
+
+npx tailwindcss init -p

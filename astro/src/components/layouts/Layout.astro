@@ -1,0 +1,38 @@
+---
+import '@/assets/css/app.css';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body class="bg-gray-100 text-gray-900">
+    <header class="bg-white shadow">
+      <div
+        class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between"
+      >
+        <!-- Logo / Title -->
+        <a href="/">
+          <h1 class="text-xl font-bold">My Site</h1>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="flex gap-6">
+          <a href="/" class="text-gray-700 hover:text-blue-600"> Top </a>
+          <a href="/posts/1" class="text-gray-700 hover:text-blue-600">
+            投稿
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl p-6">
+      <slot />
+    </main>
+  </body>
+</html>
