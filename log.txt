@@ -38,3 +38,7 @@ php artisan make:controller HomeController
 php artisan make:controller PostController
 
 php artisan make:controller PageController
+
+-----------------------------------
+
+npm create astro@latest
