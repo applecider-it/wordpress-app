@@ -1,2 +1,10 @@
-export type Post = any;
+export type Post = {
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+  };
+};
 
