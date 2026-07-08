@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import pLimit from 'p-limit';
 
 import { fileExists } from '@/services/data/file';
-import { sleep } from '@/services/data/time';
+import { sleep } from '@/services/system/time';
 
 import type { Post } from '@/types/types';
 import * as cheerio from 'cheerio';
