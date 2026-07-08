@@ -3,6 +3,7 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 
 import pLimit from 'p-limit';
+import 'dotenv/config';
 
 import { fileExists } from '@/services/data/file';
 import { sleep } from '@/services/system/time';
@@ -10,12 +11,14 @@ import { sleep } from '@/services/system/time';
 import type { Post } from '@/types/types';
 import * as cheerio from 'cheerio';
 
-const baseUrl = import.meta.env.APP_CMS_API_BASE_URL;
+const baseUrl = process.env.APP_CMS_API_BASE_URL;
+
+const maxRows = 100;
 
 /** 記事一覧取得 */
 export async function getPosts(forceDownload = false) {
   try {
-    const response = await fetch(baseUrl + '/posts?per_page=100');
+    const response = await fetch(baseUrl + '/posts?per_page=' + maxRows);
 
     if (!response.ok) {
       throw new Error(`HTTP Error: ${response.status}`);
