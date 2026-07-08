@@ -2,7 +2,10 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 
+import pLimit from 'p-limit';
+
 import { fileExists } from '@/services/data/file';
+import { sleep } from '@/services/data/time';
 
 import type { Post } from '@/types/types';
 import * as cheerio from 'cheerio';
@@ -21,7 +24,12 @@ export async function getPosts(forceDownload = false) {
     const posts: Post[] = await response.json();
 
     console.log('posts.length', posts.length);
-    return await convertPosts(posts, forceDownload);
+
+    const convertedPosts: Post[] = await convertPosts(posts, forceDownload);
+
+    console.log('end convert');
+
+    return convertedPosts;
   } catch (error) {
     console.error('取得失敗:', error);
     throw error;
@@ -30,29 +38,38 @@ export async function getPosts(forceDownload = false) {
 
 /** 画像変換 */
 async function convertPosts(posts: Post[], forceDownload: boolean) {
+  // 並列数を制限
+  const limit = pLimit(5);
+
   return Promise.all(
-    posts.map(async (post) => {
-      const $ = cheerio.load(post.content.rendered);
+    posts.map((post) =>
+      limit(async () => {
+        const $ = cheerio.load(post.content.rendered);
 
-      const images = $('img').toArray();
+        console.log('convertPost', post.title.rendered)
 
-      for (const img of images) {
-        const src = $(img).attr('src');
-        if (!src) continue;
+        const images = $('img').toArray();
 
-        const outputUri = await downloadImage(src, forceDownload);
+        for (const img of images) {
+          const src = $(img).attr('src');
+          if (!src) continue;
 
-        $(img).attr('src', outputUri);
+          const outputUri = await downloadImage(src, forceDownload);
 
-        // 不要アトリビュート削除
-        $(img).removeAttr('srcset');
-        $(img).removeAttr('sizes');
-      }
+          $(img).attr('src', outputUri);
 
-      post.content.rendered = $.html();
+          // 不要アトリビュート削除
+          $(img).removeAttr('srcset');
+          $(img).removeAttr('sizes');
+        }
 
-      return post;
-    }),
+        post.content.rendered = $.html();
+
+        //await sleep(1000);  // pLimit動作確認用
+
+        return post;
+      }),
+    ),
   );
 }
 
