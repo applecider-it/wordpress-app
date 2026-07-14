@@ -5,7 +5,14 @@ export default defineConfig({
     manifest: true,
     outDir: 'dist',
     rollupOptions: {
-      input: ['src/entrypoints/app.js', 'src/entrypoints/app.css'],
+      input: [
+        // JS
+        'resources/js/entrypoints/app.js',
+        'resources/js/entrypoints/contact-form.js',
+
+        // CSS
+        'resources/css/app.css',
+      ],
     },
   },
   server: {

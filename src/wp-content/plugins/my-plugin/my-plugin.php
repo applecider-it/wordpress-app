@@ -10,6 +10,8 @@ if (!defined('ABSPATH')) {
     exit; // 直接アクセス防止
 }
 
+require_once WP_CONTENT_DIR . '/themes/my-theme/shared/app.php';
+
 // オートロード設定
 spl_autoload_register(function ($class) {
     $prefix = 'MyPlugin\\';

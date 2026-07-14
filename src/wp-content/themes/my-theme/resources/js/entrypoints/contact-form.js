@@ -114,3 +114,18 @@ const MypluginContactForm = {
     </div>
   `,
 };
+
+const { createApp } = window.Vue;
+
+const el = document.getElementById('my-contact-app');
+
+if (el) {
+  const all = JSON.parse(el.dataset.all);
+
+  console.log(all);
+
+  createApp(MypluginContactForm, {
+    wpNonce: all.wpNonce,
+    url: all.url,
+  }).mount(el);
+}

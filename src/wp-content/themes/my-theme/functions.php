@@ -4,6 +4,8 @@
  * 設定用のコード実行
  */
 
+require_once WP_CONTENT_DIR . '/themes/my-theme/shared/app.php';
+
 require_once __DIR__ . '/src/helpers.php';
 
 // メニューの設定
@@ -14,27 +16,13 @@ register_nav_menus(array(
 
 // CSS、JSの読み込み設定
 add_action('wp_enqueue_scripts', function () {
-    $is_dev = WP_DEBUG;
 
-    $manifest = null;
-    $manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
-    if ($is_dev) {
+    if (WP_DEBUG) {
         wp_enqueue_script('vite-client', 'http://localhost:3000/@vite/client', [], null);
-    } else {
-        $manifest = json_decode(file_get_contents($manifest_path), true);
     }
 
-    $getUrl = function ($path) use ($is_dev, $manifest) {
-        if ($is_dev) {
-            return 'http://localhost:3000/' . $path;
-        } else {
-            $data = $manifest[$path];
-            return get_template_directory_uri() . '/dist/' . $data['file'];
-        }
-    };
-
-    wp_enqueue_script('myapp-app.js', $getUrl('src/entrypoints/app.js'), [], null, true);
-    wp_enqueue_style('myapp-app.css', $getUrl('src/entrypoints/app.css'));
+    wp_enqueue_script('myapp-app.js', MyApp\Vite::getUrl('resources/js/entrypoints/app.js'), [], null, true);
+    wp_enqueue_style('myapp-app.css', MyApp\Vite::getUrl('resources/css/app.css'));
 
     // swiper用設定
 
@@ -71,7 +59,7 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 add_filter('script_loader_tag', function ($tag, $handle) {
-    if (in_array($handle, ['myapp-app.js'])) {
+    if (in_array($handle, ['myapp-app.js', 'vite-client'])) {
         // 既存のtype属性を除去
         $tag = preg_replace('/\stype=(["\'])[^"\']*\1/', '', $tag);
         // <script の直後に type="module" を追加

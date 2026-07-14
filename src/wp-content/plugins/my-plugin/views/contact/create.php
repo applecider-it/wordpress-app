@@ -1,15 +1,7 @@
-<script src="<?= plugins_url('assets/js/contact/contact-form.js', dirname(__DIR__)) . '?' .
-                    filemtime(dirname(dirname(__DIR__)) . '/assets/js/contact/contact-form.js') ?>"></script>
+<script type="module" src="<?= MyApp\Vite::getUrl('resources/js/entrypoints/contact-form.js') ?>"></script>
 
-<script type="module">
-    const {
-        createApp
-    } = window.Vue;
-
-    createApp(MypluginContactForm, {
-        wpNonce: '<?php echo wp_create_nonce("wp_rest"); ?>',
-        url: '<?php echo esc_url_raw(rest_url("myplugin/contact")); ?>'
-    }).mount('#my-contact-app');
-</script>
-
-<div id="my-contact-app"></div>
+<div id="my-contact-app"
+    data-all="<?= esc_html(json_encode([
+                    'wpNonce' => wp_create_nonce("wp_rest"),
+                    'url' => esc_url_raw(rest_url("myplugin/contact")),
+                ])) ?>"></div>
