@@ -1,4 +1,4 @@
-<script type="module" src="<?= MyApp\Vite::getUrl('resources/js/entrypoints/contact-form.js') ?>"></script>
+<?= MyApp\Vite::importJs('resources/js/entrypoints/contact-form.js') ?>
 
 <div id="my-contact-app"
     data-all="<?= esc_html(json_encode([

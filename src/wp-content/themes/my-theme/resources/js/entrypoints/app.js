@@ -1,1 +1,1 @@
-console.log(123)
+import '../services/app/setup-app';

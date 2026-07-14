@@ -12,6 +12,10 @@
 
 	<title><?php echo wp_get_document_title(); ?></title>
 
+	<?= Myapp\Vite::init() ?>
+	<?= MyApp\Vite::importJs('resources/js/entrypoints/app.js') ?>
+	<?= MyApp\Vite::importCss('resources/css/app.css') ?>
+
 	<?php
 	if (is_singular()) {
 		wp_enqueue_script('comment-reply');
