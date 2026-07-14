@@ -11,6 +11,7 @@ export default defineConfig({
       input: [
         // JS
         'resources/js/entrypoints/app.js',
+        'resources/js/entrypoints/slideshow.js',
         'resources/js/entrypoints/contact-form.js',
 
         // CSS
