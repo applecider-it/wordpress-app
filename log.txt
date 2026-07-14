@@ -63,3 +63,8 @@ npm install -D dotenv
 npm install vite --save-dev
 
 npm install swiper
+
+npm install vue @vitejs/plugin-vue
+
+npm install axios
+
