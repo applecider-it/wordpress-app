@@ -68,3 +68,5 @@ npm install vue @vitejs/plugin-vue
 
 npm install axios
 
+npm install -D typescript @types/node
+

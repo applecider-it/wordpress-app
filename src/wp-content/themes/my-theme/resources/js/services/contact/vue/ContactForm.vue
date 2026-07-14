@@ -1,26 +1,43 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
-const props = defineProps({
-  wpNonce: String,
-  url: String,
-});
+interface Props {
+  wpNonce: string;
+  url: string;
+}
 
-const formData = ref({
+const props = defineProps<Props>();
+
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+const formData = ref<FormData>({
   name: '',
   email: '',
   subject: '',
   message: '',
 });
 
-const isSubmitting = ref(false);
-const step = ref('form');
-const errorMessage = ref('');
-const errors = ref({});
+// バリデーションエラーの型定義 (WordPress の REST API エラー構造)
+interface ApiValidationError {
+  code?: string;
+  message?: string;
+  data?: Record<string, any>;
+  errors?: Record<string, string[]>;
+}
+
+const isSubmitting = ref<boolean>(false);
+const step = ref<'form' | 'complete'>('form');
+const errorMessage = ref<string>('');
+const errors = ref<Record<string, string[]>>({});
 
 /** 送信処理 */
-const submitForm = async () => {
+const submitForm = async (): Promise<void> => {
   isSubmitting.value = true;
   errorMessage.value = '';
   errors.value = {};
@@ -36,10 +53,15 @@ const submitForm = async () => {
     console.log(response);
     step.value = 'complete';
   } catch (error) {
-    const response = error.response;
+    // AxiosError 型としてキャッチする
+    const axiosError = error as AxiosError<ApiValidationError>;
+    const response = axiosError.response;
+    
     console.error(response);
+    
     if (response?.status === 422) {
-      errors.value = response.data.errors;
+      // 422エラーの場合、エラーメッセージ群を格納
+      errors.value = response.data?.errors || {};
     } else {
       errorMessage.value =
         response?.data?.message ||

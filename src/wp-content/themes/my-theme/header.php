@@ -13,7 +13,7 @@
 	<title><?php echo wp_get_document_title(); ?></title>
 
 	<?= Myapp\Vite::init() ?>
-	<?= MyApp\Vite::importJs('resources/js/entrypoints/app.js') ?>
+	<?= MyApp\Vite::importJs('resources/js/entrypoints/app.ts') ?>
 	<?= MyApp\Vite::importCss('resources/css/app.css') ?>
 
 	<?php
