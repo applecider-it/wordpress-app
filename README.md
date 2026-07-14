@@ -6,7 +6,7 @@
 - 独自プラグイン（お問い合わせフォーム）
 - ヘッドレスCMS（Laravel, Astro）
 
-独自プラグインのTailwind管理は、独自テーマでしている。
+独自プラグインのJS、CSS管理は、独自テーマでしている。
 
 ## 独自テーブル
 
@@ -17,9 +17,11 @@ wp_myplugin_contact_messages
 
 ## Wordpress側で利用しているツール
 
+- Vite
 - Tailwind3
-
-Viteは使っていない
+- Vue
+- Axios
+- Swiper
 
 ## ヘッドレスCMS（Laravel）
 
