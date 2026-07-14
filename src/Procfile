@@ -1,2 +1,2 @@
 web: php -S localhost:8080 -t .
-mytheme: sleep 3 && sh -c "cd ./wp-content/themes/my-theme && npx tailwindcss -i ./assets/css/app.css -o ./dist/css/app.css --watch"
+mytheme: sleep 3 && sh -c "cd ./wp-content/themes/my-theme && npm run dev"

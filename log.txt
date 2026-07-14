@@ -56,3 +56,9 @@ npm install -D @types/node
 npm install -D tsx
 
 npm install -D dotenv
+
+-----------------------------------
+
+
+npm install vite --save-dev
+

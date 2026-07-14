@@ -7,8 +7,9 @@ cd ~/workspace/github/wordpress-app/src
 port
 
 wordpress: 8080
+wordpress vite: 3000
 laravel: 8000
-vite: 5173
+laravel vite: 5173
 astro: 4321
 astro確認: 4322
 
@@ -42,7 +43,9 @@ Tailwind Build
 
 cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
 
-npx tailwindcss -i ./assets/css/app.css -o ./dist/css/app.css --watch
+npm run dev
+
+npm run build
 
 独自プラグインのCSS管理もここでしている
 

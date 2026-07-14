@@ -14,13 +14,27 @@ register_nav_menus(array(
 
 // CSS、JSの読み込み設定
 add_action('wp_enqueue_scripts', function () {
-    // ビルドされたCSSを読み込む
-    wp_enqueue_style(
-        'tailwind',
-        get_template_directory_uri() . '/dist/css/app.css',
-        [],
-        filemtime(__DIR__ . '/dist/css/app.css')
-    );
+    $is_dev = WP_DEBUG;
+
+    $manifest = null;
+    $manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
+    if ($is_dev) {
+        wp_enqueue_script('vite-client', 'http://localhost:3000/@vite/client', [], null);
+    } else {
+        $manifest = json_decode(file_get_contents($manifest_path), true);
+    }
+
+    $getUrl = function ($path) use ($is_dev, $manifest) {
+        if ($is_dev) {
+            return 'http://localhost:3000/' . $path;
+        } else {
+            $data = $manifest[$path];
+            return get_template_directory_uri() . '/dist/' . $data['file'];
+        }
+    };
+
+    wp_enqueue_script('myapp-app.js', $getUrl('src/entrypoints/app.js'), [], null, true);
+    wp_enqueue_style('myapp-app.css', $getUrl('src/entrypoints/app.css'));
 
     // swiper用設定
 
@@ -55,3 +69,13 @@ add_action('wp_enqueue_scripts', function () {
         '1.x'
     );
 });
+
+add_filter('script_loader_tag', function ($tag, $handle) {
+    if (in_array($handle, ['myapp-app.js'])) {
+        // 既存のtype属性を除去
+        $tag = preg_replace('/\stype=(["\'])[^"\']*\1/', '', $tag);
+        // <script の直後に type="module" を追加
+        $tag = str_replace('<script ', '<script type="module" ', $tag);
+    }
+    return $tag;
+}, 20, 2);
