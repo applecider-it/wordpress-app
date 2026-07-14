@@ -9,45 +9,54 @@ namespace MyApp;
  */
 class Vite
 {
-    private static bool $is_dev;
-    private static ?array $manifest = null;
-    private static int $port = 3000;
-    private static string $prefix = '/wp-content/themes/my-theme/dist';
+    private bool $isDev;
+    private string $devUrl;
+    private string $prodUrl;
 
-    /** 初期化 */
-    public static function init(): ?string
+    private ?array $manifest = null;
+
+    function __construct()
     {
-        self::$is_dev = WP_DEBUG;
+        $this->isDev = WP_DEBUG;
+        $this->devUrl = 'http://localhost:3000';
+        $this->prodUrl = '/wp-content/themes/my-theme/dist';
+
         $manifest_path = dirname(__DIR__) . '/dist/.vite/manifest.json';
 
-        if (self::$is_dev) {
-            $url = 'http://localhost:' . self::$port . '/@vite/client';
-            return self::importJsTag($url);
-        } else {
-            self::$manifest = json_decode(file_get_contents($manifest_path), true);
+        if (!$this->isDev) {
+            $this->manifest = json_decode(file_get_contents($manifest_path), true);
+        }
+    }
 
-            return null;
+    /** 初期処理 */
+    public function init(): string
+    {
+        if ($this->isDev) {
+            $url = $this->devUrl . '/@vite/client';
+            return $this->importJsTag($url);
+        } else {
+            return '';
         }
     }
 
     /** JSからの読み込み */
-    public static function importJs(string $path): string
+    public function importJs(string $path): string
     {
-        if (self::$is_dev) {
-            $url = 'http://localhost:' . self::$port . '/' . $path;
+        if ($this->isDev) {
+            $url = $this->devUrl . '/' . $path;
 
-            return self::importJsTag($url);
+            return $this->importJsTag($url);
         } else {
-            $data = self::$manifest[$path];
-            $url = self::$prefix . '/' . $data['file'];
+            $data = $this->manifest[$path];
+            $url = $this->prodUrl . '/' . $data['file'];
 
-            $html = self::importJsTag($url);
+            $html = $this->importJsTag($url);
 
             // JSから読み込むときには、CSSの読み込みもある場合があるので、その対応
             if (isset($data['css'])) {
                 foreach ($data['css'] as $css) {
-                    $url = self::$prefix . '/' . $css;
-                    $html .= self::importCssTag($url);
+                    $url = $this->prodUrl . '/' . $css;
+                    $html .= $this->importCssTag($url);
                 }
             }
 
@@ -56,26 +65,26 @@ class Vite
     }
 
     /** CSSからの読み込み */
-    public static function importCss(string $path): string
+    public function importCss(string $path): string
     {
-        if (self::$is_dev) {
-            $url = 'http://localhost:' . self::$port . '/' . $path;
+        if ($this->isDev) {
+            $url = $this->devUrl . '/' . $path;
 
-            return self::importCssTag($url);
+            return $this->importCssTag($url);
         } else {
-            $data = self::$manifest[$path];
-            $url = self::$prefix . '/' . $data['file'];
+            $data = $this->manifest[$path];
+            $url = $this->prodUrl . '/' . $data['file'];
 
-            return self::importCssTag($url);
+            return $this->importCssTag($url);
         }
     }
 
-    private static function importJsTag(string $url): string
+    private function importJsTag(string $url): string
     {
         return '<script type="module" src="' . $url . '"></script>';
     }
 
-    private static function importCssTag(string $url): string
+    private function importCssTag(string $url): string
     {
         return '<link rel="stylesheet" href="' . $url . '" type="text/css" media="all" />';
     }

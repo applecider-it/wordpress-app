@@ -1,4 +1,11 @@
-<?= MyApp\Vite::importJs('resources/js/entrypoints/contact-form.ts') ?>
+<?php
+
+use Myapp\App;
+
+$vite = App::get('vite');
+?>
+
+<?= $vite->importJs('resources/js/entrypoints/contact-form.ts') ?>
 
 <div id="my-contact-app"
     data-all="<?= esc_html(json_encode([

@@ -3,6 +3,10 @@
 /**
  * ヘッダー
  */
+
+use Myapp\App;
+
+$vite = App::get('vite');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -12,9 +16,9 @@
 
 	<title><?php echo wp_get_document_title(); ?></title>
 
-	<?= Myapp\Vite::init() ?>
-	<?= MyApp\Vite::importJs('resources/js/entrypoints/app.ts') ?>
-	<?= MyApp\Vite::importCss('resources/css/app.css') ?>
+	<?= $vite->init() ?>
+	<?= $vite->importJs('resources/js/entrypoints/app.ts') ?>
+	<?= $vite->importCss('resources/css/app.css') ?>
 
 	<?php
 	if (is_singular()) {
