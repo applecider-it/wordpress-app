@@ -19,7 +19,7 @@
                 <div class="flex justify-end">
                     <a
                         href="{{ route('page.show', ['slug' => $page['slug']]) }}"
-                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+                        class="app-btn-primary"
                     >
                         詳細を見る
                         <span>→</span>

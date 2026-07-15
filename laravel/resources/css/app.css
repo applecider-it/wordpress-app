@@ -1,26 +1,38 @@
-@import 'tailwindcss';
+@import "tailwindcss" source(none);
 
+@source "../views";
+@source "../js";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
 
 @layer components {
-  /* 投稿内容 */
-  .app-post-content-container {
-    li {
-      @apply text-gray-400 ml-2;
-    }
+    /* 投稿内容 */
+    .app-post-content-container {
+        li {
+            @apply text-gray-400 ml-2;
+        }
 
-    img {
-      @apply border-4 my-5;
-    }
+        img {
+            @apply border-4 my-5;
+        }
 
-    p {
-      @apply my-5;
+        p {
+            @apply my-5;
+        }
     }
-  }
+}
+
+@utility app-btn {
+    @apply px-4 py-2 rounded;
+}
+
+@utility app-btn-primary {
+    @apply app-btn bg-blue-500 text-white;
 }
