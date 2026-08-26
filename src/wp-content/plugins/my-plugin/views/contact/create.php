@@ -1,6 +1,6 @@
 <?php
 
-use function Myapp\app;
+use function Myapp\Helpers\app;
 
 $vite = app('vite');
 ?>

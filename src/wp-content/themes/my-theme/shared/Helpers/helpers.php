@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp;
+namespace MyApp\Helpers;
 
 use Illuminate\Container\Container;
 

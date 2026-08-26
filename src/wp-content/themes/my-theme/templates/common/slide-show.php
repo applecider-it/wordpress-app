@@ -1,13 +1,7 @@
 <?php
 
 /** @var array $list */
-
-use function Myapp\app;
-
-$vite = app('vite');
 ?>
-<?= $vite->importJs('resources/js/entrypoints/slideshow.ts') ?>
-
 <div class="swiper-container swiper-container1">
 	<div class="swiper swiper1">
 		<div class="swiper-wrapper">

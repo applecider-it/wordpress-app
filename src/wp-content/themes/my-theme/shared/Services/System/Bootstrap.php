@@ -1,8 +1,11 @@
 <?php
 
-namespace MyApp;
+namespace MyApp\Services\System;
 
 use Illuminate\Config\Repository;
+use MyApp\Services\Web\Vite;
+
+use function MyApp\Helpers\app;
 
 class Bootstrap
 {
@@ -13,7 +16,7 @@ class Bootstrap
         });
 
         app()->singleton('config', function () {
-            return new Repository(include(dirname(__DIR__) . '/config/config.php'));
+            return new Repository(include(dirname(dirname(dirname(__DIR__))) . '/config/config.php'));
         });
     }
 }

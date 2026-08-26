@@ -2,7 +2,7 @@
 
 namespace MyPlugin\Controllers\Admin;
 
-use MyPlugin\Services\Output\View;
+use MyPlugin\Services\Web\View;
 use MyPlugin\Services\Admin\Contact\ListService;
 
 use MyPlugin\Models\ContactMessage;
