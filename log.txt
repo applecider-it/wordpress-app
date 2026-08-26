@@ -76,4 +76,6 @@ npm install -D typescript @types/node
 
 composer dump-autoload
 
+composer require illuminate/container
 
+composer require illuminate/config

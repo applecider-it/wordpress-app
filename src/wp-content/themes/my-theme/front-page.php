@@ -4,7 +4,9 @@
  * トップページ
  */
 
-$frontPageConfig = MyTheme\loadConfig('front-page');
+use MyTheme\UI;
+
+use function MyApp\config;
 
 $baseDir = __DIR__ . '/templates/front-page';
 
@@ -15,10 +17,10 @@ $baseDir = __DIR__ . '/templates/front-page';
 	<?php include($baseDir . '/cards.php'); ?>
 
 	<div class="my-10">
-		<?php MyTheme\slideShow($frontPageConfig['slideList1']); ?>
+		<?php UI::slideShow(config('front-page.slideList1')); ?>
 	</div>
 	<div class="my-10">
-		<?php MyTheme\slideShow($frontPageConfig['slideList2']); ?>
+		<?php UI::slideShow(config('front-page.slideList2')); ?>
 	</div>
 </div>
 

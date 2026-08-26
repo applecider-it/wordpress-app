@@ -2,7 +2,12 @@
     "autoload": {
         "psr-4": {
             "MyApp\\": "shared/",
+            "MyTheme\\": "src/",
             "MyPlugin\\": "../../plugins/my-plugin/src/"
         }
+    },
+    "require": {
+        "illuminate/container": "^13.29",
+        "illuminate/config": "^13.29"
     }
 }

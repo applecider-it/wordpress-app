@@ -1,8 +1,8 @@
 <?php
 
-use Myapp\App;
+use function Myapp\app;
 
-$vite = App::get('vite');
+$vite = app('vite');
 ?>
 
 <?= $vite->importJs('resources/js/entrypoints/contact-form.ts') ?>

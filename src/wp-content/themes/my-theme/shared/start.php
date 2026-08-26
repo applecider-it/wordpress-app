@@ -6,4 +6,6 @@
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-MyApp\App::init();
+require_once __DIR__ . '/helpers.php';
+
+MyApp\Bootstrap::init();

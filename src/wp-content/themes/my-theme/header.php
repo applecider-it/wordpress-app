@@ -4,9 +4,9 @@
  * ヘッダー
  */
 
-use Myapp\App;
+use function Myapp\app;
 
-$vite = App::get('vite');
+$vite = app('vite');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
