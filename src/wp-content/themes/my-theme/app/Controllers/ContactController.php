@@ -1,11 +1,11 @@
 <?php
 
-namespace MyPlugin\Controllers;
+namespace MyApp\Controllers;
 
-use MyPlugin\Services\Web\View;
-use MyPlugin\Services\Contact\EditService;
+use MyApp\Services\Web\View;
+use MyApp\Services\Contact\EditService;
 
-use MyPlugin\Models\ContactMessage;
+use MyApp\Models\ContactMessage;
 
 /**
  * お問い合わせ管理

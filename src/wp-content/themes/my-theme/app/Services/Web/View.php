@@ -1,6 +1,6 @@
 <?php
 
-namespace MyPlugin\Services\Web;
+namespace MyApp\Services\Web;
 
 /**
  * View管理
@@ -11,7 +11,7 @@ class View
 
     function __construct()
     {
-        $this->baseDir = dirname(dirname(dirname(__DIR__))) . '/views';
+        $this->baseDir = dirname(dirname(dirname(__DIR__))) . '/resources/views';
     }
 
     /** 生成 */

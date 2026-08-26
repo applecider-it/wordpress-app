@@ -1,6 +1,6 @@
 <?php
 
-namespace MyTheme\Services\UI;
+namespace MyApp\Services\UI;
 
 class SlideShow {
 	public static function slideShow(array $list) {

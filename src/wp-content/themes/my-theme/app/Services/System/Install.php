@@ -1,8 +1,8 @@
 <?php
 
-namespace MyPlugin\Services\System;
+namespace MyApp\Services\System;
 
-use MyPlugin\Models\ContactMessage;
+use MyApp\Models\ContactMessage;
 
 class Install
 {

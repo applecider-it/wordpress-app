@@ -4,7 +4,7 @@
  * トップページ
  */
 
-use MyTheme\Services\UI\SlideShow;
+use MyApp\Services\UI\SlideShow;
 
 use function MyApp\Helpers\config;
 

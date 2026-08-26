@@ -10,11 +10,11 @@ if (!defined('ABSPATH')) {
     exit; // 直接アクセス防止
 }
 
-require_once WP_CONTENT_DIR . '/themes/my-theme/shared/start.php';
+require_once WP_CONTENT_DIR . '/themes/my-theme/bootstrap/app.php';
 
 // プラグイン追加時に動作する処理
 register_activation_hook(__FILE__, function () {
-    $install = new MyPlugin\Services\System\Install;
+    $install = new MyApp\Services\System\Install;
 
     $install->exec();
 });
@@ -24,7 +24,7 @@ add_action('rest_api_init', function () {
     register_rest_route('myplugin', '/contact', [
         'methods' => 'POST',
         'callback' => function (WP_REST_Request $request) {
-            $ctrl = new MyPlugin\Controllers\ContactController;
+            $ctrl = new MyApp\Controllers\ContactController;
             return $ctrl->store($request);
         },
         'permission_callback' => function (WP_REST_Request $request) {
@@ -36,7 +36,7 @@ add_action('rest_api_init', function () {
 
 // プラグインを呼び出すためのコードの設定
 add_shortcode('myplugin_contact_form', function () {
-    $ctrl = new MyPlugin\Controllers\ContactController;
+    $ctrl = new MyApp\Controllers\ContactController;
     return $ctrl->create();
 });
 
@@ -50,7 +50,7 @@ add_action(
             'manage_options',
             'contact-plugin',
             function () {
-                $ctrl = new MyPlugin\Controllers\Admin\ContactController;
+                $ctrl = new MyApp\Controllers\Admin\ContactController;
                 if (isset($_GET['id'])) {
                     $ctrl->show((int) $_GET['id']);
                     return;

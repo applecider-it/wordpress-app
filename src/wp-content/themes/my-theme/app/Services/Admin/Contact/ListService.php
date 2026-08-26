@@ -1,8 +1,8 @@
 <?php
 
-namespace MyPlugin\Services\Admin\Contact;
+namespace MyApp\Services\Admin\Contact;
 
-use MyPlugin\Models\ContactMessage;
+use MyApp\Models\ContactMessage;
 
 /**
  * お問い合わせ管理の一覧管理

@@ -1,6 +1,6 @@
 <?php
 
-namespace MyPlugin\Models;
+namespace MyApp\Models;
 
 /**
  * お問い合わせ

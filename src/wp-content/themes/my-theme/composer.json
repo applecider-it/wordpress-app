@@ -1,9 +1,7 @@
 {
     "autoload": {
         "psr-4": {
-            "MyApp\\": "shared/",
-            "MyTheme\\": "src/",
-            "MyPlugin\\": "../../plugins/my-plugin/src/"
+            "MyApp\\": "app/"
         }
     },
     "require": {

@@ -1,11 +1,11 @@
 <?php
 
-namespace MyPlugin\Controllers\Admin;
+namespace MyApp\Controllers\Admin;
 
-use MyPlugin\Services\Web\View;
-use MyPlugin\Services\Admin\Contact\ListService;
+use MyApp\Services\Web\View;
+use MyApp\Services\Admin\Contact\ListService;
 
-use MyPlugin\Models\ContactMessage;
+use MyApp\Models\ContactMessage;
 
 /**
  * お問い合わせ管理画面
