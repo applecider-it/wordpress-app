@@ -10,18 +10,7 @@ if (!defined('ABSPATH')) {
     exit; // 直接アクセス防止
 }
 
-require_once WP_CONTENT_DIR . '/themes/my-theme/shared/app.php';
-
-// オートロード設定
-spl_autoload_register(function ($class) {
-    $prefix = 'MyPlugin\\';
-
-    if (strpos($class, $prefix) === 0) {
-        $relative = str_replace('\\', '/', substr($class, strlen($prefix)));
-
-        require_once __DIR__ . '/src/' . $relative . '.php';
-    }
-});
+require_once WP_CONTENT_DIR . '/themes/my-theme/shared/start.php';
 
 // プラグイン追加時に動作する処理
 register_activation_hook(__FILE__, function () {

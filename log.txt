@@ -70,3 +70,10 @@ npm install axios
 
 npm install -D typescript @types/node
 
+-----------------------------------
+
+
+
+composer dump-autoload
+
+

@@ -123,7 +123,9 @@ My Plugin有効化
 
 メニューに問い合わせページを追加
 
-Tailwind Build
+cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
+
+composer install
 
 
 ----

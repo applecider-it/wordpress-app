@@ -4,7 +4,7 @@
  * 設定用のコード実行
  */
 
-require_once WP_CONTENT_DIR . '/themes/my-theme/shared/app.php';
+require_once WP_CONTENT_DIR . '/themes/my-theme/shared/start.php';
 
 require_once __DIR__ . '/src/helpers.php';
 
