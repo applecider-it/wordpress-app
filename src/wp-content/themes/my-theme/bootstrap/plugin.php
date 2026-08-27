@@ -1,5 +1,8 @@
 <?php
 
+use MyApp\Controllers\ContactController;
+use MyApp\Controllers\Admin\ContactController as AdminContactController;
+
 // プラグイン追加時に動作する処理
 register_activation_hook(__FILE__, function () {
     $install = new MyApp\Services\System\Install;
@@ -12,7 +15,7 @@ add_action('rest_api_init', function () {
     register_rest_route('myplugin', '/contact', [
         'methods' => 'POST',
         'callback' => function (WP_REST_Request $request) {
-            $ctrl = new MyApp\Controllers\ContactController;
+            $ctrl = new ContactController;
             return $ctrl->store($request);
         },
         'permission_callback' => function (WP_REST_Request $request) {
@@ -24,7 +27,7 @@ add_action('rest_api_init', function () {
 
 // プラグインを呼び出すためのコードの設定
 add_shortcode('myplugin_contact_form', function () {
-    $ctrl = new MyApp\Controllers\ContactController;
+    $ctrl = new ContactController;
     return $ctrl->create();
 });
 
@@ -38,7 +41,7 @@ add_action(
             'manage_options',
             'contact-plugin',
             function () {
-                $ctrl = new MyApp\Controllers\Admin\ContactController;
+                $ctrl = new AdminContactController;
                 if (isset($_GET['id'])) {
                     $ctrl->show((int) $_GET['id']);
                     return;
