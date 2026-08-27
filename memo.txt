@@ -7,7 +7,7 @@ cd ~/workspace/github/wordpress-app/src
 port
 
 wordpress: 8080
-wordpress vite: 3000
+wordpress vite: 8081
 laravel: 8000
 laravel vite: 5173
 astro: 4321

@@ -7,4 +7,8 @@ return [
         'slideList1' => [$img, $img, $img, $img,],
         'slideList2' => [$img, $img,],
     ],
+    'vite' => [
+        'dev' => WP_DEBUG,
+        'port' => 8081,
+    ]
 ];

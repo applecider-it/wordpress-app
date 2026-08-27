@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MyApp\Services\Web;
 
+use function MyApp\Helpers\config;
+
 /**
  * Vite管理
  */
@@ -17,11 +19,11 @@ class Vite
 
     function __construct()
     {
-        $this->isDev = WP_DEBUG;
-        $this->devUrl = 'http://localhost:3000';
+        $this->isDev = config('vite.dev');
+        $this->devUrl = 'http://localhost:' . config('vite.port');
         $this->prodUrl = '/wp-content/themes/my-theme/dist';
 
-        $manifest_path = dirname(__DIR__) . '/dist/.vite/manifest.json';
+        $manifest_path = dirname(dirname(dirname(__DIR__))) . '/dist/.vite/manifest.json';
 
         if (!$this->isDev) {
             $this->manifest = json_decode(file_get_contents($manifest_path), true);

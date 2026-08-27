@@ -21,8 +21,8 @@ export default defineConfig({
   },
   server: {
     strictPort: true,
-    port: 3000,
-    origin: 'http://localhost:3000',
+    port: 8081,
+    origin: 'http://localhost:8081',
   },
   resolve: {
     alias: {
