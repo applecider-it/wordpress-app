@@ -3,13 +3,9 @@
 /**
  * フッター
  */
-?>
-</div>
 
-<?php wp_footer(); ?>
+use MyApp\Services\Web\View;
 
-</div>
+$view = new View;
 
-</body>
-
-</html>
+echo $view->render('layouts/footer');
