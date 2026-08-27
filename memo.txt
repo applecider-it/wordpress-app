@@ -8,8 +8,10 @@ port
 
 wordpress: 8080
 wordpress vite: 8081
+
 laravel: 8000
 laravel vite: 5173
+
 astro: 4321
 astro確認: 4322
 
@@ -22,14 +24,23 @@ cd ~/workspace/github/wordpress-app/src
 
 foreman start
 
+----
 
-cd ~/workspace/github/wordpress-app/src
+PHP起動
 
 php -S localhost:8080 -t .
 
+----
+
+npm起動
+
+cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
+
+npm run dev
+
+----
 
 http://localhost:8080/
-
 
 http://localhost:8080/wp-admin/
 
@@ -39,15 +50,13 @@ admin@localhost.com
 
 ----
 
-Tailwind Build
+ビルド
 
 cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
 
-npm run dev
-
 npm run build
 
-独自プラグインのJS、CSS管理もここでしている
+wp-config.phpのWP_DEBUGをfalseにする
 
 -----------------------------------
 
@@ -123,10 +132,12 @@ My Plugin有効化
 
 メニューに問い合わせページを追加
 
+
 cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
 
 composer install
 
+npm ci
 
 ----
 
