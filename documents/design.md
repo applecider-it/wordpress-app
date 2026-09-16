@@ -6,6 +6,8 @@
 
 構造は、Laravelに寄せています。
 
+Laravelのコンポーネントを部分的に使用しています。
+
 ## 実装内容
 
 - Tailwindを使ったテーマ
@@ -27,7 +29,7 @@ wp-content/
       functions.php テーマブートストラップ
 ```
 
-## Wordpress側で利用しているツール
+## npm
 
 - Vite
 - Tailwind3
