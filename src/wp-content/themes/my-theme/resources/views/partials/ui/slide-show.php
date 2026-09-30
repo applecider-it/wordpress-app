@@ -1,0 +1,17 @@
+<?php
+
+/** @var array $data */
+?>
+<div class="swiper-container">
+	<div class="swiper app-feature-swiper1">
+		<div class="swiper-wrapper">
+			<?php foreach ($data['list'] as $val): ?>
+				<div class="swiper-slide">
+					<Image src="<?= esc_html($val) ?>" alt="" class="mx-auto" />
+				</div>
+			<?php endforeach; ?>
+		</div>
+
+		<div class="swiper-pagination app-feature-swiper1-pagination"></div>
+	</div>
+</div>

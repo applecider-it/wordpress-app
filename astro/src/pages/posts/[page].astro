@@ -1,0 +1,36 @@
+---
+import Layout from '@/components/layouts/Layout.astro';
+import Pagination from '@/components/nav/Pagination.astro';
+import type { GetStaticPaths, Page } from 'astro';
+import type { Post } from '@/types/types';
+import { getPosts } from '@/services/post/post';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = await getPosts();
+
+  return paginate(posts, { pageSize: 5 });
+};
+
+const { page } = Astro.props as { page: Page<Post> };
+---
+
+<Layout>
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold mb-12">Blog</h1>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {
+        page.data.map((post: Post) => (
+          <a
+            href={`/post/${post.slug}`}
+            class="block bg-white rounded-2xl shadow hover:shadow-xl transition p-6"
+          >
+            <h2 class="text-xl font-semibold mb-2">{post.title.rendered}</h2>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <Pagination page={page} baseUri="/posts" />
+</Layout>

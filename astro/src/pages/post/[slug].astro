@@ -1,0 +1,36 @@
+---
+import Layout from '@/components/layouts/Layout.astro';
+import type { GetStaticPaths } from 'astro';
+import type { Post } from '@/types/types';
+import { getPosts } from '@/services/post/post';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts: Post[] = await getPosts();
+
+  return posts.map((post) => {
+    return {
+      params: { slug: decodeURIComponent(post.slug) },
+      props: { post },
+    };
+  });
+};
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props as Props;
+---
+
+<Layout>
+  <article class="max-w-3xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold mb-4">
+      {post.title.rendered}
+    </h1>
+
+    <div
+      class="app-post-content-container max-w-none"
+      set:html={post.content.rendered}
+    />
+  </article>
+</Layout>

@@ -1,0 +1,81 @@
+
+https://ja.wordpress.org/support/article/how-to-install-wordpress/
+
+wget https://wordpress.org/latest.tar.gz
+
+tar -xzvf latest.tar.gz
+
+rm latest.tar.gz
+
+
+
+sudo mysql -u root -p
+CREATE DATABASE wordpress_test;
+CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON wordpress_test.* TO 'wordpress_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+
+
+npm init -y
+
+npm install -D tailwindcss@^3.4.18 postcss autoprefixer
+
+npx tailwindcss init -p
+
+
+-----------------------------------
+
+
+
+composer create-project laravel/laravel myapp
+
+npm install
+
+php artisan make:controller HomeController
+
+php artisan make:controller PostController
+
+php artisan make:controller PageController
+
+
+-----------------------------------
+
+
+npm create astro@latest
+
+npm install -D tailwindcss@^3.4.18 postcss autoprefixer
+
+npx tailwindcss init -p
+
+npm install cheerio
+
+npm install -D @types/node
+
+npm install -D tsx
+
+npm install -D dotenv
+
+-----------------------------------
+
+
+npm install vite --save-dev
+
+npm install swiper
+
+npm install vue @vitejs/plugin-vue
+
+npm install axios
+
+npm install -D typescript @types/node
+
+-----------------------------------
+
+
+
+composer dump-autoload
+
+composer require illuminate/container
+
+composer require illuminate/config

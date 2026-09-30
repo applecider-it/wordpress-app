@@ -1,0 +1,14 @@
+/*
+!.gitignore
+!Procfile
+!wp-content/
+ 
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
+ 
+wp-content/plugins/*
+!wp-content/plugins/my-plugin/
+ 
+wp-content/themes/*
+!wp-content/themes/my-theme/

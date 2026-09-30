@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* ボタン */
+
+  .app-btn {
+    @apply px-4 py-2 rounded-lg;
+  }
+  .app-btn-primary {
+    @apply app-btn bg-blue-500 text-white hover:bg-blue-600;
+  }
+  .app-btn-indigo {
+    @apply app-btn bg-indigo-500 text-white hover:bg-indigo-600;
+  }
+  .app-btn-purple {
+    @apply app-btn bg-purple-500 text-white hover:bg-purple-600;
+  }
+
+  /* 通常のリンク */
+  .app-link-normal {
+    @apply text-blue-600 hover:underline;
+  }
+
+  /* カード */
+  .app-card {
+    @apply bg-white rounded-2xl shadow-xl p-6 hover:scale-105 transition;
+  }
+
+  /* 投稿内容 */
+  .app-post-content-container {
+    h1 {
+      @apply text-gray-500 text-xl my-4;
+    }
+
+    h2 {
+      @apply text-gray-500 text-lg my-3;
+    }
+
+    li {
+      @apply text-gray-400 ml-2;
+    }
+
+    img {
+      @apply border-4 my-5;
+    }
+  }
+}

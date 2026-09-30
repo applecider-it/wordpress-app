@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "MyApp\\": "app/"
+        }
+    },
+    "require": {
+        "illuminate/container": "^13.29",
+        "illuminate/config": "^13.29"
+    }
+}

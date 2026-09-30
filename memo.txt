@@ -1,0 +1,189 @@
+
+
+cd ~/workspace/github/wordpress-app/src
+
+-----------------------------------
+
+port
+
+wordpress: 8080
+wordpress vite: 8081
+
+laravel: 8000
+laravel vite: 5173
+
+astro: 4321
+astro確認: 4322
+
+-----------------------------------
+
+Wordpress
+
+
+cd ~/workspace/github/wordpress-app/src
+
+foreman start
+
+----
+
+PHP起動
+
+php -S localhost:8080 -t .
+
+----
+
+npm起動
+
+cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
+
+npm run dev
+
+----
+
+http://localhost:8080/
+
+http://localhost:8080/wp-admin/
+
+admin / adminadmin
+
+admin@localhost.com
+
+----
+
+ビルド
+
+cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
+
+npm run build
+
+wp-config.phpのWP_DEBUGをfalseにする
+
+-----------------------------------
+
+Laravel
+
+
+cd ~/workspace/github/wordpress-app/laravel
+
+foreman start
+
+composer dev
+
+
+http://127.0.0.1:8000
+
+-----------------------------------
+
+Astro
+
+
+cd ~/workspace/github/wordpress-app/astro
+
+npm run dev
+
+http://localhost:4321/
+
+
+ビルド
+
+npm run build
+
+php -S localhost:4322 -t ./dist
+
+http://localhost:4322/
+
+-----------------------------------
+
+セットアップ
+
+----
+
+Wordpress
+
+
+
+Wordpressダウンロード
+
+このコードで上書きする
+
+Wordpressインストール
+
+Loco Translateで日本語化
+
+トップとブログ用のダミーの固定ページ作成
+
+設定 -> 表示設定 -> ホームページの設定
+  固定ページ
+    ホームページ: Top
+    投稿: Blog
+
+My Theme有効化
+
+外観 -> メニュー -> メニュー設定 -> メニューの位置
+  Main Menuにチェック
+  メニューの配置調整
+
+My Plugin有効化
+
+問い合わせ用の固定ページ作成
+
+内容
+[myplugin_contact_form]
+
+メニューに問い合わせページを追加
+
+
+cd ~/workspace/github/wordpress-app/src/wp-content/themes/my-theme
+
+composer install
+
+npm ci
+
+----
+
+Laravel
+
+
+cd ~/workspace/github/wordpress-app/laravel
+
+
+composer install
+
+npm ci
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+
+
+----
+
+Astro
+
+
+cd ~/workspace/github/wordpress-app/astro
+
+npm ci
+
+cp .env.example .env
+
+
+
+
+-----------------------------------
+
+独自テーブル
+
+問い合わせ
+
+wp_myplugin_contact_messages
+
+
+-----------------------------------
+
+ベーステーマの場所
+
+ls -la ~/workspace/github/wordpress-app/src/wp-includes/theme-compat
+
